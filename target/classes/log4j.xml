@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="dev.mvc.team3_git">
+	<logger name="dev.mvc.team3">
 		<level value="info" />
 	</logger>
 	
