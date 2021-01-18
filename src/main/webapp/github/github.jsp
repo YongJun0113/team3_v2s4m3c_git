@@ -17,6 +17,6 @@
 
 </head>
 <body>
- <h1>1.팀장</h1>
+
 </body>
 </html>
