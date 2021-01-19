@@ -19,7 +19,6 @@
 </head> 
 <body>
   <img src='./images/iu.jpg' style='width: 50%;'>
-  
 </body>
 
 </html>
