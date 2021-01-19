@@ -19,7 +19,9 @@
 <body>
   <h1>1. 팀장 </h1>
   <img src="./images/food1.jpg" style='width: 50%;'>
+  <h1>2. 수석개발자 </h1>
+  <img src="./images/burger.jpeg" style='width: 50%;'> 
   <h1>5. 데이터과학자 </h1>
-  <img src="./images/food5.jpg" style='width: 50%;'>
+  <img src="./food5.jpg" style='width: 50%;'>
 </body>
 </html>
