@@ -17,7 +17,7 @@
 
 </head>
 <body>
-
-
+  <h1>1. 팀장 </h1>
+  <img src="./images/food1.jpg" style='width: 50%;'>
 </body>
 </html>
