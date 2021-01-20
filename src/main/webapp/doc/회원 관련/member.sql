@@ -56,7 +56,7 @@ CREATE TABLE memberph(
         file1                                   VARCHAR(100)          NULL,
         thumb1                              VARCHAR(100)          NULL,
         size1                                 NUMBER(10)      DEFAULT 0 NULL,  
-  FOREIGN KEY (memberno) REFERENCES memberin (memberno)
+  FOREIGN KEY (memberno) REFERENCES member (memberno)
 );
 
 COMMENT ON TABLE memberph is '주문 내역';
@@ -90,7 +90,7 @@ CREATE TABLE bookshelf(
         file1                                   VARCHAR(100)          NULL,
         thumb1                              VARCHAR(100)          NULL,
         size1                                 NUMBER(10)      DEFAULT 0 NULL,  
-  FOREIGN KEY (memberno) REFERENCES memberin (memberno)
+  FOREIGN KEY (memberno) REFERENCES member (memberno)
 );
 
 COMMENT ON TABLE bookshelf is '내 서재';
