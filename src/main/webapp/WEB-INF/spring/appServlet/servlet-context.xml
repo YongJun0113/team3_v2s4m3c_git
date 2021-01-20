@@ -45,6 +45,9 @@
     class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
   </beans:bean>
   
+  <!-- 데이터과학자 -->
+  <context:component-scan base-package="dev.mvc.reply"/>
+  
   <!-- 관리자 목록 -->
   <beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
     <beans:property name="location" value="/WEB-INF/config/admin.properties"/> 
