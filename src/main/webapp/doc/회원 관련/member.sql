@@ -1,5 +1,5 @@
 
-DROP TABLE memberin;
+DROP TABLE member;
 DROP TABLE memberph;
 DROP TABLE bookshelf;
 
@@ -13,6 +13,7 @@ CREATE TABLE member(
       id             VARCHAR(20)   NOT NULL UNIQUE, -- 아이디, 중복 안됨, 레코드를 구분 
       passwd      VARCHAR(60)   NOT NULL, -- 패스워드, 영숫자 조합
       mname      VARCHAR(20)   NOT NULL, -- 성명, 한글 10자 저장 가능
+      email      VARCHAR(60)   NOT NULL, -- 패스워드, 영숫자 조합
       tel            VARCHAR(14)   NOT NULL, -- 전화번호
       zipcode     VARCHAR(5)        NULL, -- 우편번호, 12345
       address1    VARCHAR(80)       NULL, -- 주소 1
@@ -26,6 +27,7 @@ COMMENT ON COLUMN MEMBER.MEMBERNO is '회원 번호';
 COMMENT ON COLUMN MEMBER.ID is '아이디';
 COMMENT ON COLUMN MEMBER.PASSWD is '패스워드';
 COMMENT ON COLUMN MEMBER.MNAME is '성명';
+COMMENT ON COLUMN MEMBER.EMAIL is '이메일';
 COMMENT ON COLUMN MEMBER.TEL is '전화번호';
 COMMENT ON COLUMN MEMBER.ZIPCODE is '우편번호';
 COMMENT ON COLUMN MEMBER.ADDRESS1 is '주소1';
@@ -113,31 +115,11 @@ CREATE SEQUENCE bookshelf_seq
 /**********************************/
 -- 회원 정보
 -- 회원 관리용 계정, Q/A 용 계정
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate)
-VALUES (member_seq.nextval, 'qnaadmin', '1234', 'QNA관리자', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate);
+INSERT INTO member(memberno, id, passwd, mname, email, tel, zipcode, address1, address2, mdate)
+VALUES (member_seq.nextval, 'qnaadmin', '1234', 'QNA관리자', 'abc1234@naver.com', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate);
  
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate)
-VALUES (member_seq.nextval, 'crm', '1234', '고객관리자', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate);
- 
--- 개인 회원 테스트 계정
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate)
-VALUES (member_seq.nextval, 'user1', '1234', '왕눈이', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate);
- 
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate)
-VALUES (member_seq.nextval, 'user2', '1234', '아로미', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate);
- 
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate)
-VALUES (member_seq.nextval, 'user3', '1234', '투투투', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate);
- 
--- 그룹별 공유 회원 기준
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate)
-VALUES (member_seq.nextval, 'team1', '1234', '개발팀', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate);
- 
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate)
-VALUES (member_seq.nextval, 'team2', '1234', '웹퍼블리셔팀', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate);
- 
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate)
-VALUES (member_seq.nextval, 'team3', '1234', '디자인팀', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate);
+INSERT INTO member(memberno, id, passwd, mname, email, tel, zipcode, address1, address2, mdate)
+VALUES (member_seq.nextval, 'crm', '1234', '고객관리자', 'def1234@naver.com', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate);
 
 COMMIT;
 
@@ -154,13 +136,10 @@ VALUES(bookshelf_seq.nextval, 1, '이름', '상품 정보', 'summer.jpg', 'summer_t.jp
 /**********************************/
 
 -- 회원 정보
-SELECT memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate
+SELECT memberno, id, passwd, mname, email, tel, zipcode, address1, address2, mdate
 FROM member
 ORDER BY memberno ASC;
 
-  MEMBERNO  ID           PASSWORD        MAIL                        ADDRESS              RDATE      
------------------ ------------- -------------------- ------------------------------ ------------------------- -------------------
-         1        uyz0113     team3             uyz0113@naver.com       경기도 남양주시      2020-10-27 10:32:35
          
 -- 주문 내역
 SELECT orderno, memberno, p_number, p_infor, p_amount, p_state, file1, thumb1, size1
