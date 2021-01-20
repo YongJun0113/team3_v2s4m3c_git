@@ -35,6 +35,11 @@
   <context:component-scan base-package="dev.mvc.ebook.attachfile" />
   <!-- 수석개발자 -->
   
+  <!-- 웹 퍼블리셔 -->
+  <context:component-scan base-package="dev.mvc.event" />
+  <context:component-scan base-package="dev.mvc.sale" />
+  <context:component-scan base-package="dev.mvc.qnagrp" />
+  <!-- 웹 퍼블리셔 -->
     <!-- FORM의 FILE 태그를 읽어 MultipartFile 객체로 변환 -->
   <beans:bean id="multipartResolver"
     class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

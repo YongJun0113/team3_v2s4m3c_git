@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.categrp.CategrpDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.sale.SaleweekDAOInter">
+  
+   <insert id="create" parameterType="SaleweekVO">
+     INSERT INTO saleweek(saleno, name, salesbook, sale, saleperiod, eventno, contents, passwd, rdate, file1, thumb1, size1)
+     VALUES(saleweek_seq.nextval, #{name}, #{salesbook}, #{sale}, #{saleperiod}, #{eventno}, #{contents}, #{passwd}, sysdate , 
+     #{file1}, #{thumb1}, #{size1})
+  </insert>
+  
+  <select id="list_eventno_asc" resultType="SaleweekVO"> 
+   SELECT saleno, name, salesbook, sale, saleperiod, eventno, contents, passwd, rdate, file1, thumb1, size1
+   FROM saleweek
+   ORDER BY eventno ASC
+   </select>
+  
+  <select id="list_saleno_asc" resultType="SaleweekVO"> 
+   SELECT saleno, name, salesbook, sale, saleperiod, eventno, contents, passwd, rdate, file1, thumb1, size1
+   FROM saleweek
+   ORDER BY saleno ASC
+   </select>
+   
+    <select id="list_by_eventno"  resultType="SaleweekVO" parameterType="int">
+     SELECT saleno, name, salesbook, sale, saleperiod, eventno, contents, passwd, rdate, file1, thumb1, size1
+     FROM saleweek 
+     WHERE eventno = #{eventno}
+     ORDER BY saleno DESC
+    </select>
+   
+   <!-- 읽기 -->
+    <select id="read" parameterType="int" resultType="SaleweekVO">
+      SELECT saleno, name, salesbook, sale, saleperiod, eventno, contents, rdate
+                  file1, thumb1, size1
+      FROM saleweek
+      WHERE saleno = #{saleno}
+   </select>
+   
+   <!--수정-->
+    <update id="update" parameterType="SaleweekVO">
+     UPDATE saleweek
+     SET saleno=#{saleno}, name=#{name}, salesbook =#{salesbook}, saleperiod=#{saleperiod}, eventno= #{eventno} , contents=#{contents}
+     WHERE saleno = #{saleno}
+    </update>
+   
+    <!-- 비번 검사 --> 
+     <select id="passwd_check" parameterType="HashMap" resultType="int">
+       SELECT COUNT(*) as passwd_cnt
+       FROM saleweek
+       WHERE saleno=#{saleno} AND passwd=#{passwd}
+     </select>
+     
+       <update id="update_img" parameterType="SaleweekVO">
+        UPDATE contents
+        SET file1=#{file1}, thumb1=#{thumb1}, size1=#{size1}
+        WHERE saleno=#{saleno}
+    </update>
+</mapper>
+  

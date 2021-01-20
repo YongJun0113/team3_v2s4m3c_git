@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.categrp.CategrpDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.event.EventDAOInter">
+  <!-- 
+  insert: INSERT SQL 실행
+  id: Spring에서 호출시 사용
+  parameterType: 전달받는 데이터 객체의 타입
+  return: 등록한 레코드 갯수 리턴
+  SQL선언시 ';'은 삭제
+  #{}: ? 동일
+  #{name}: public String getName() 자동 호출
+   --> 
+   
+    <!-- 등록 -->
+  <insert id="create" parameterType="EventVO">
+    INSERT INTO event(eventno, name, whatevent, saleno, rdate, file1, thumb1, size1)
+    VALUES(event_seq.nextval, #{name}, #{whatevent} , #{saleno}, sysdate, #{file1}, #{thumb1}, #{size1})
+  </insert>
+  
+   <!-- 목록 -->
+  <select id="list_eventno_asc"  resultType="EventVO">
+    SELECT eventno, name, whatevent, saleno, rdate
+    FROM event
+    ORDER BY saleno ASC
+  </select>
+  
+   <!--조회-->
+   <select id="read" parameterType="int" resultType="EventVO">
+    SELECT eventno, name, whatevent, saleno, rdate
+    FROM event
+    WHERE eventno = #{eventno}
+   </select>
+   
+   
+
+   
+   <!-- 수정 -->
+  <update id="update" parameterType="EventVO">
+     UPDATE event
+    SET name= #{name}, whatevent= #{whatevent}, saleno = #{saleno}
+    WHERE eventno = #{eventno}
+  </update>
+        
+   <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE event
+    WHERE eventno = #{eventno}
+  </delete>
+  
+  
+  </mapper>
+  
