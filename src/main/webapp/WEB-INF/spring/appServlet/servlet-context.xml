@@ -28,6 +28,13 @@
   <context:component-scan base-package="dev.mvc.bookshelf" />
   <context:component-scan base-package="dev.mvc.admin" />
   
+  <!-- 수석개발자 -->
+  <context:component-scan base-package="dev.mvc.categrp" /> 
+  <context:component-scan base-package="dev.mvc.cate" />
+  <context:component-scan base-package="dev.mvc.ebook" />
+  <context:component-scan base-package="dev.mvc.ebook.attachfile" />
+  <!-- 수석개발자 -->
+  
     <!-- FORM의 FILE 태그를 읽어 MultipartFile 객체로 변환 -->
   <beans:bean id="multipartResolver"
     class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

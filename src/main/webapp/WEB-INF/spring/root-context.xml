@@ -30,7 +30,11 @@
                    value="dev.mvc.memberin, 
                           dev.mvc.memberph,
                           dev.mvc.bookshelf,
-                          dev.mvc.admin"/>
+                          dev.mvc.admin,
+                          dev.mvc.categrp, 
+                          dev.mvc.cate, 
+                          dev.mvc.ebook,
+                          dev.mvc.ebook.attachfile"/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
   
