@@ -1,0 +1,76 @@
+
+
+로그인 회원가입 Logout, 주문 내역, 관리자 Login  qna 
+홈 --+-- 로그인(유용준) : http://localhost:9090/team3_git/member/login.do
+          |
+         +-- 회원가입(유용준): http://localhost:9090/team3_git/member/create.do
+          |
+          로그인 되었을 시 나오는 메뉴(유용준)-----+-- Logout:http://localhost:9090/team3_git/member/logout.do
+          
+         
+           로그인 없이 뜨는 화면 
+            주문내역(유용준) : http://localhost:9090/team3_git/memberph/list.do            
+            |
+           관리자 로그인(유용준) :  http://localhost:9090/team3_git/admin/login.do         
+            |
+            |
+            이벤트 홈(안재훈) :  http://localhost:9090/team3_git/adm/event/list.do
+
+            qna(안재훈) :  http://localhost:9090/team3_git/adm/qnagrp/list_all.do
+            |
+            |
+    
+            고객센터 메인(조하연) : http://localhost:9090/team3_git/customer/list_my_inquiry.do?m_no=${param.m_no}&m_id=${sessionScope.m_id}
+            공지사항(조하연) http://localhost:9090/team3_git/notice/list.do
+            리뷰(조하연) http://localhost:9090/team3_git/review/list.do
+            |
+            |
+              
+            정다혜
+            공지사항(정다혜) http://localhost:9090/team3_git/notice/list.do
+            리뷰(정다혜) http://localhost:9090/team3_git/review/list.do
+            |  
+            |
+-          관리자로 로그인시 나오는 매뉴(유용준) --+---  관리자 로그 아웃: http://localhost:9090/team3_git/admin/logout.do
+            |
+           --+--- 카테고리 그룹(김예송) :  http://localhost:9090/team3_git/adm/categrp/list.do
+            |           
+           --+--- 전체 카테고리(김예송) :  http://localhost:9090/team3_git/adm/cate/list_all.do
+            |          
+           --+--- eBook 전체 목록(김예송):  http://localhost:9090/team3_git/adm/ebook/list.do
+          
+
+  
+제목 로그인 회원가입 로그인 되었을 시 메뉴 주문내역 관리자 로그인 주문내역 관리자 로그인 관리자로 로그인시 나오는 매뉴 카테고리 그룹 전체 카테고리 eBook 전체 목록 공지사항 리뷰 고객센터 메인 이벤트홈 할인 이벤트
+ 
+유용준 
+로그인(유용준) : http://localhost:9090/team3_git/member/login.do
+회원가입(유용준): http://localhost:9090/team3_git/member/create.do
+로그인 되었을 시 나오는 메뉴(유용준)-----+-- Logout:http://localhost:9090/team3_git/member/logout.do
+주문내역 : http://localhost:9090/team3_git/memberph/list.do
+관리자 로그인(유용준) :  http://localhost:9090/team3_git/admin/login.do
+관리자로 로그인시 나오는 매뉴(유용준) --+---  관리자 로그 아웃: http://localhost:9090/team3_git/admin/logout.do
+
+김예송(수석 개발자)
+
+관리자 메인 :  http://localhost:9090/team3_git/adm/
+(관리자) 카테고리 그룹 :  http://localhost:9090/team3_git/adm/categrp/list.do
+(관리자) 전체 카테고리 :  http://localhost:9090/team3_git/adm/cate/list_all.do
+(관리자) eBook 전체 목록:  http://localhost:9090/team3_git/adm/ebook/list.do
+  
+정다혜
+공지사항(정다혜) http://localhost:9090/team3_git/notice/list.do
+리뷰(정다혜) http://localhost:9090/team3_git/review/list.do
+
+조하연
+고객센터 메인(조하연) : http://localhost:9090/team3_git/customer/list_my_inquiry.do?m_no=${param.m_no}&m_id=${sessionScope.m_id}
+
+공지사항(조하연) http://localhost:9090/team3_git/notice/list.do
+리뷰(조하연) http://localhost:9090/team3_git/review/list.do
+
+안재훈(웹 퍼블리셔)       
+
+이벤트 홈(안재훈) :  http://localhost:9090/team3_git/adm/categrp/list.do
+할인 이벤트(안재훈) :  http://localhost:9090/team3_git/adm/cate/list_all.do
+
+        
