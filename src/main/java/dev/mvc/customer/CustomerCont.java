@@ -18,8 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
-import dev.mvc.memberin.MemberProcInter;
-import dev.mvc.memberin.MemberVO;
+import dev.mvc.member.MemberProcInter;
+import dev.mvc.member.MemberVO;
 import dev.mvc.pay.CodeTable;
 import dev.mvc.pay.TypeCode;
 import dev.mvc.tool.Tool;
