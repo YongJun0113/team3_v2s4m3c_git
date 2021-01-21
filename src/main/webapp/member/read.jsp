@@ -86,6 +86,14 @@
     </div>   
  
     <div class="form-group">
+      <label class="col-md-2 control-label" style='font-size: 0.9em;'>email</label>    
+      <div class="col-md-10">
+        <input type='text' class="form-control" name='email' id='email' 
+                   value='${memberVO.mname }' required="required" style='width: 30%;' placeholder="이메일">
+      </div>
+    </div>   
+ 
+    <div class="form-group">
       <label class="col-md-2 control-label" style='font-size: 0.9em;'>전화번호</label>    
       <div class="col-md-10">
         <input type='text' class="form-control" name='tel' id='tel' 

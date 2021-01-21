@@ -52,16 +52,18 @@
   <colgroup>
     <col style='width: 5%;'/>
     <col style='width: 10%;'/>
+    <col style='width: 15%;'/>
     <col style='width: 10%;'/>
     <col style='width: 20%;'/>
-    <col style='width: 30%;'/>
-    <col style='width: 15%;'/>
+    <col style='width: 20%;'/>
+    <col style='width: 10%;'/>
     <col style='width: 10%;'/>
   </colgroup>
   <TR>
     <TH class='th'>번호</TH>
     <TH class='th'>ID</TH>
     <TH class='th'>성명</TH>
+    <TH class='th'>이메일</TH>
     <TH class='th'>전화번호</TH>
     <TH class='th'>주소</TH>
     <TH class='th'>등록일</TH>
@@ -74,6 +76,7 @@
     <TD class='td'>${memberno}</TD>
     <TD class='td'><A href="./read.do?memberno=${memberno}">${memberVO.id}</A></TD>
     <TD class='td'><A href="./read.do?memberno=${memberno}">${memberVO.mname}</A></TD>
+    <TD class='td'><A href="./read.do?memberno=${memberno}">${memberVO.email}</A></TD>
     <TD class='td'>${memberVO.tel}</TD>
     <TD class='td'>
       <c:choose>

@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- dev.mvc.member.MemberDAOInter 패키지에 등록된 interface 명시,
       패키지명과 인터페이스명은 실제로 존재해야함,
       Spring이 내부적으로 자동으로 interface를 구현해줌. -->
-<mapper namespace="dev.mvc.memberin.MemberDAOInter">
+<mapper namespace="dev.mvc.member.MemberDAOInter">
   
   <select id="checkID" resultType="int" parameterType="String">
     SELECT COUNT(id) as cnt
@@ -16,31 +16,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <insert id="create" parameterType="memberVO">
-    INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate)
-    VALUES (member_seq.nextval, #{id}, #{passwd}, #{mname}, #{tel}, #{zipcode}, #{address1}, #{address2}, sysdate)
+    INSERT INTO member(memberno, id, passwd, mname, email, tel, zipcode, address1, address2, mdate)
+    VALUES (member_seq.nextval, #{id}, #{passwd}, #{mname}, #{email}, #{tel}, #{zipcode}, #{address1}, #{address2}, sysdate)
   </insert>
   
   <select id="list" resultType="MemberVO">
-    SELECT memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate
+    SELECT memberno, id, passwd, mname, tel, email, zipcode, address1, address2, mdate
     FROM member
     ORDER BY memberno ASC
   </select>
   
   <select id="read" resultType="MemberVO" parameterType="int">
-    SELECT memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate
+    SELECT memberno, id, passwd, mname, tel, email, zipcode, address1, address2, mdate
     FROM member
     WHERE memberno = #{memberno}
   </select>  
 
   <select id="readById" resultType="MemberVO" parameterType="String">
-    SELECT memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate
+    SELECT memberno, id, passwd, mname, tel, email, zipcode, address1, address2, mdate
     FROM member
     WHERE id = #{id}
   </select>
   
   <update id="update" parameterType="MemberVO">
     UPDATE member 
-    SET mname=#{mname}, tel=#{tel}, zipcode=#{zipcode},
+    SET mname=#{mname}, email=#{email}, tel=#{tel}, zipcode=#{zipcode},
           address1=#{address1}, address2=#{address2}
     WHERE memberno=#{memberno}
   </update>

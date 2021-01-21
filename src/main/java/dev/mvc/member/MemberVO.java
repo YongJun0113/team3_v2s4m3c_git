@@ -121,6 +121,12 @@ public class MemberVO {
   public void setUrl_address(String url_address) {
     this.url_address = url_address;
   }
+  public String getEmail() {
+    return email;
+  }
+  public void setEmail(String email) {
+    this.email = email;
+  }
   
 
  
