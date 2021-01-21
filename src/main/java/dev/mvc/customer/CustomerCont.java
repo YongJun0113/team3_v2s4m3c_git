@@ -33,7 +33,7 @@ public class CustomerCont {
   private AdminProcInter adminProc;
   
   @Autowired
-  @Qualifier("dev.mvc.memberin.MemberProc") 
+  @Qualifier("dev.mvc.member.MemberProc") 
   private MemberProcInter memberProc;
   
   @Autowired
