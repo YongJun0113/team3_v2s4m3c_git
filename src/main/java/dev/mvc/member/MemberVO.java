@@ -1,4 +1,4 @@
-package dev.mvc.memberin;
+package dev.mvc.member;
 
 public class MemberVO {
   /*
@@ -22,6 +22,8 @@ public class MemberVO {
   private String passwd = "";
   /** 관리자 성명 */
   private String mname = "";
+  /** 이메일 */
+  private String email = "";
   /** 전화 번호 */
   private String tel = "";
   /** 우편 번호 */

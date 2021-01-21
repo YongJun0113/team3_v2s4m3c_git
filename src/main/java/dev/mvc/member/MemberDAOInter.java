@@ -1,19 +1,18 @@
-package dev.mvc.memberin;
+package dev.mvc.member;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
-public interface MemberProcInter {
+public interface MemberDAOInter {
   /**
    * 중복 아이디 검사
    * @param id
    * @return 중복 아이디 갯수
    */
   public int checkID(String id);
-
+  
   /**
    * 회원 가입
    * @param memberVO
@@ -75,12 +74,5 @@ public interface MemberProcInter {
    * @return
    */
   public int login(Map<String, Object> map);
-  
-  /**
-   * 로그인된 회원 계정인지 검사합니다.
-   * @param session
-   * @return true: 관리자
-   */
-  public boolean isMember(HttpSession session);  
   
 }

@@ -1,4 +1,4 @@
-package dev.mvc.memberin;
+package dev.mvc.member;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +26,7 @@ import dev.mvc.admin.AdminProcInter;
 @Controller
 public class MemberCont {
   @Autowired
-  @Qualifier("dev.mvc.memberin.MemberProc")
+  @Qualifier("dev.mvc.member.MemberProc")
   private MemberProcInter memberProc; 
   
   @Autowired

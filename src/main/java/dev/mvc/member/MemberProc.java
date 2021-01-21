@@ -1,4 +1,4 @@
-package dev.mvc.memberin;
+package dev.mvc.member;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
-@Component("dev.mvc.memberin.MemberProc")
+@Component("dev.mvc.member.MemberProc")
 public class MemberProc implements MemberProcInter{
   @Autowired
   private MemberDAOInter memberDAO; 
