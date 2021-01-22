@@ -40,6 +40,7 @@
                             dev.mvc.ebook.attachfile,
                             dev.mvc.reply,
                             dev.mvc.notice,
+                            dev.mvc.review,
                             dev.mvc.customer"/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
