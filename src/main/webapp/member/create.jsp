@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-팀장
+팀장 
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
