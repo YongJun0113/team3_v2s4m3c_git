@@ -13,7 +13,7 @@
     <NAV class='top_menu'  style='background-color: gray;'>
       <span style='padding-left: 0.5%;'></span>
       <A class='top_menu_link'  href='${pageContext.request.contextPath}' >HOME</A> <span class='top_menu1'> | </span>
-      
+       
        <c:choose>
         <c:when test="${sessionScope.id == null}">
           <A class='top_menu_link'  href='${pageContext.request.contextPath}/member/login.do' >Login</A> <span class='top_menu_sep'> &nbsp; </span>
