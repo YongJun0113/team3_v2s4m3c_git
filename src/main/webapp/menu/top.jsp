@@ -38,7 +38,7 @@
         <c:otherwise>
           ${sessionScope.id_admin } <A class='top_menu_link'  href='${pageContext.request.contextPath}/admin/logout.do' >관리자 Logout</A><span class='top_menu_sep'>&nbsp;</span>
           <A class='top_menu_link'  href='${pageContext.request.contextPath}/member/list.do'>회원목록</A><span class='top_menu_sep'>&nbsp;</span>       
-          <A class='top_menu_link'  href='${pageContext.request.contextPath}categrp/list.do'>카테고리 그룹</A><span class='top_menu_sep'>&nbsp;</span>
+          <A class='top_menu_link'  href='${pageContext.request.contextPath}/categrp/list.do'>카테고리 그룹</A><span class='top_menu_sep'>&nbsp;</span>
           <A class='top_menu_link'  href='${pageContext.request.contextPath}/cate/list_all.do'>전체 카테고리</A><span class='top_menu_sep'>&nbsp;</span>
           <A class='top_menu_link'  href='${pageContext.request.contextPath}/ebook/list.do'>eBook 전체 목록</A><span class='top_menu_sep'>&nbsp;</span>    
         </c:otherwise>
