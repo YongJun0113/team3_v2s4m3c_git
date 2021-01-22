@@ -48,6 +48,7 @@
     </NAV>
   </DIV> 
      
+     
   <!-- 화면을 2개로 분할하여 좌측은 메뉴, 우측은 내용으로 구성 -->  
   <DIV class="row" style='margin-top: 2px;'></DIV>
     <DIV class="col-sm-3 col-md-2"> <!-- 메뉴 출력 컬럼 -->
