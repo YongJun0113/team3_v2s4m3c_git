@@ -81,8 +81,8 @@ WHERE cs_no=1
 ORDER BY cs_no ASC;
 
 -- 삭제
-DELETE FROM member r, customer c
-WHERE r.m_no = c.m_no AND c.cs_no=5;
+DELETE FROM customer
+WHERE cs_no= 3;
 
 -- 수정
 UPDATE customer 
