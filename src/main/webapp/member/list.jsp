@@ -4,7 +4,7 @@
  
 <!DOCTYPE html> 
 <html lang="ko"> 
-<head> 
+<head>  
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>Resort world</title>
