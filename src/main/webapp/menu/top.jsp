@@ -26,7 +26,7 @@
       
       <A class='top_menu_link'  href='${pageContext.request.contextPath}/memberph/list.do'>주문 내역</A> <span class='top_menu1'> | </span> 
       <A class='top_menu_link'  href='${pageContext.request.contextPath}/event/list.do'>이벤트</A> <span class='top_menu1'> | </span>
-      <A class='top_menu_link'  href='${pageContext.request.contextPath}/qnagrp/list_all.do'>QNA</A> <span class='top_menu1'> | </span>
+      <A class='top_menu_link'  href='${pageContext.request.contextPath}/qnagrp/list.do'>QNA</A> <span class='top_menu1'> | </span>
       <A class='top_menu_link'  href='${pageContext.request.contextPath}/customer/list_my_inquiry.do?m_no=${param.m_no}&m_id=${sessionScope.m_id}'>고객센터</A> <span class='top_menu1'> | </span> 
       <A class='top_menu_link'  href='${pageContext.request.contextPath}/notice/list.do'>공지사항 </A> <span class='top_menu1'> | </span>   
       <A class='top_menu_link'  href='${pageContext.request.contextPath}/review/list.do'>리뷰 </A> <span class='top_menu1'> | </span>
