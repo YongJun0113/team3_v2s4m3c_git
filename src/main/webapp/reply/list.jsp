@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  정다혜 
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
@@ -24,7 +23,7 @@
     REPLY 
   </DIV>
   <ASIDE class="aside_left">
-    전체 보기 
+    REPLY 전체 보기 
   </ASIDE>
   <ASIDE class="aside_right">
     <A href="javascript:location.reload();">새로고침</A>
