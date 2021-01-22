@@ -24,8 +24,12 @@
         </c:otherwise>
       </c:choose>
       
-      <A class='top_menu_link'  href='${pageContext.request.contextPath}/memberph/list.do'>주문 내역</A> <span class='top_menu1'> | </span>  
-          
+      <A class='top_menu_link'  href='${pageContext.request.contextPath}/memberph/list.do'>주문 내역</A> <span class='top_menu1'> | </span> 
+      <A class='top_menu_link'  href='${pageContext.request.contextPath}/event/list.do'>이벤트</A> <span class='top_menu1'> | </span>
+      <A class='top_menu_link'  href='${pageContext.request.contextPath}/qnagrp/list_all.do'>QNA</A> <span class='top_menu1'> | </span>
+      <A class='top_menu_link'  href='${pageContext.request.contextPath}/customer/list_my_inquiry.do?m_no=${param.m_no}&m_id=${sessionScope.m_id}'>고객센터</A> <span class='top_menu1'> | </span> 
+      <A class='top_menu_link'  href='${pageContext.request.contextPath}/notice/list.do'>공지사항 </A> <span class='top_menu1'> | </span>   
+      <A class='top_menu_link'  href='${pageContext.request.contextPath}/review/list.do'>리뷰 </A> <span class='top_menu1'> | </span>
       [
       <c:choose>
         <c:when test="${sessionScope.id_admin == null}">
@@ -33,7 +37,10 @@
         </c:when>
         <c:otherwise>
           ${sessionScope.id_admin } <A class='top_menu_link'  href='${pageContext.request.contextPath}/admin/logout.do' >관리자 Logout</A><span class='top_menu_sep'>&nbsp;</span>
-          <A class='top_menu_link'  href='${pageContext.request.contextPath}/member/list.do'>회원목록</A><span class='top_menu_sep'>&nbsp;</span>           
+          <A class='top_menu_link'  href='${pageContext.request.contextPath}/member/list.do'>회원목록</A><span class='top_menu_sep'>&nbsp;</span>       
+          <A class='top_menu_link'  href='${pageContext.request.contextPath}/member/categrp/list.do'>카테고리 그룹</A><span class='top_menu_sep'>&nbsp;</span>
+          <A class='top_menu_link'  href='${pageContext.request.contextPath}/cate/list_all.do'>전체 카테고리</A><span class='top_menu_sep'>&nbsp;</span>
+          <A class='top_menu_link'  href='${pageContext.request.contextPath}/ebook/list.do'>eBook 전체 목록</A><span class='top_menu_sep'>&nbsp;</span>    
         </c:otherwise>
       </c:choose>
       ]           
