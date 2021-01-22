@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-일요일 안재훈 
+월요일 안재훈 
 <% 
 // String root = request.getContextPath(); // /resort 
 // ${pageContext.request.contextPath}
