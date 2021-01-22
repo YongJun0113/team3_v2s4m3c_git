@@ -21,7 +21,7 @@
     // document.getElementById('btn_checkID').addEventListener('click', checkID); 동일
     $('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
     $('#btn_close').on('click', setFocus); // Dialog 창을 닫은후의 focus 이동 
-    $('#btn_send').on('click', send); 
+    $('#btn_send').on('click', send);  
   });
 
   // jQuery ajax 요청
