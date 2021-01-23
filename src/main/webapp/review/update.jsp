@@ -27,7 +27,7 @@
 <body>
   <jsp:include page="/menu/top.jsp" flush='false' />
    <DIV class='title_line'>
-      카테고리 이름
+      리뷰
    </DIV>
 
   <ASIDE class="aside_left">
@@ -42,8 +42,8 @@
 
   <DIV style='width: 100%;'>
     <FORM name='frm' method='POST' action='./update.do'>
-      <input type="hidden" name="eb_no" value="1">
-      <input type="hidden" name="memberno" value="1">
+      <input type="hidden" name="eb_no" value="2">
+      <input type="hidden" name="m_no" value="1">
       <input type='hidden' name='review_no' id='review_no' value='${reviewVO.review_no}'>
       
       <div class="form-group">
@@ -79,10 +79,12 @@
          </div>
       </div>  
     
-      <div class="content_bottom_menu" style="padding-right: 20%;">
-        <button type="submit">등록</button>
-        <button type="button" onclick="location.href='./list.do'" >목록</button>
-      </div>
+       <DIV class='content_bottom_menu'>
+        <button type="submit" class="btn btn-info">수정</button>
+        <button type="button"
+          onclick="location.href='./list.do'" 
+          class="btn btn-info">취소[목록]</button>
+      </DIV>
 
     </FORM>
   

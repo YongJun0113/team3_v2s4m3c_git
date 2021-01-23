@@ -7,20 +7,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.review.ReviewDAOInter">
 
   <insert id="create" parameterType="ReviewVO">
-  INSERT INTO review(review_no, eb_no, memberno, review_content, 
+  INSERT INTO review(review_no, eb_no, m_no, review_content, 
                     review_grade, review_rdate, review_good, review_pw)
-  VALUES(review_seq.nextval, #{eb_no}, #{memberno}, #{review_content},
+  VALUES(review_seq.nextval, #{eb_no}, #{m_no}, #{review_content},
                #{review_grade}, sysdate, #{review_good}, #{review_pw})
   </insert>
   
   <select id="list_reviewno_asc" resultType="ReviewVO">
-    SELECT review_no, eb_no, memberno, review_content, review_grade, review_rdate, review_good, review_pw
+    SELECT review_no, eb_no, m_no, review_content, review_grade, review_rdate, review_good, review_pw
     FROM review
     ORDER BY review_no ASC
   </select>
   
   <select id="read" resultType="ReviewVO" parameterType="int">
-    SELECT review_no, eb_no, memberno, review_content, review_grade, review_rdate, review_good, review_pw
+    SELECT review_no, eb_no, m_no, review_content, review_grade, review_rdate, review_good, review_pw
     FROM review
     WHERE review_no = #{review_no}
   </select>

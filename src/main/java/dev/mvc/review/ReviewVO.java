@@ -3,7 +3,7 @@ package dev.mvc.review;
 /*
 review_no                         NUMBER(10)     NOT NULL    PRIMARY KEY,
 eb_no                             NUMBER(10)     NOT NULL,
-memberno                          NUMBER(10)     NOT NULL ,
+m_no                          NUMBER(10)     NOT NULL ,
 review_content                    CLOB    NOT NULL,
 review_grade                      NUMBER(5)    NOT NULL,
 review_rdate                      DATE     NOT NULL,
@@ -16,7 +16,7 @@ public class ReviewVO {
 
   private int eb_no;
 
-  private int memberno;
+  private int m_no;
 
   private String review_content="";
   
@@ -40,11 +40,14 @@ public class ReviewVO {
   public void setEb_no(int eb_no) {
     this.eb_no = eb_no;
   }
-  public int getMemberno() {
-    return memberno;
+
+  
+  
+  public int getM_no() {
+    return m_no;
   }
-  public void setMemberno(int memberno) {
-    this.memberno = memberno;
+  public void setM_no(int m_no) {
+    this.m_no = m_no;
   }
   public String getReview_content() {
     return review_content;

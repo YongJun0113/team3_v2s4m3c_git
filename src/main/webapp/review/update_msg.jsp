@@ -20,14 +20,14 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
   <DIV class='title_line'>
-   리
+   리뷰
   </DIV>
 
   <ASIDE class="aside_left">
     <A href=''>리뷰</A> > ${reviewVO.review_no} 번 수정
   </ASIDE>
   <ASIDE class="aside_right">
-    <A href=''>목록</A>
+    <A href='./list.do'>목록</A>
     <!-- <span class='menu_divide' >│</span> --> 
   </ASIDE> 
  

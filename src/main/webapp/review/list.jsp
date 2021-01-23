@@ -62,7 +62,7 @@
       <c:forEach var="reviewVO" items="${list}">  <!-- request 객체에 접근 -->
         <c:set var="review_no" value="${reviewVO.review_no}" />
         <TR>
-          <TD class="td_bs">${reviewVO.eb_no}-${reviewVO.memberno} </TD>
+          <TD class="td_bs">${reviewVO.eb_no}-${reviewVO.m_no} </TD>
           <TD class="td_bs_left"><A href="./read.do?review_no=${review_no}">${reviewVO.review_no}</A></TD>
           <TD class="td_bs">${reviewVO.review_content}</TD>
           <TD class="td_bs">${reviewVO.review_grade}</TD>

@@ -22,8 +22,8 @@
   <jsp:include page="/menu/top.jsp" flush='false' />
   
  <FORM name='frm' method='POST' action='./create.do' class="form-horizontal">
-  <input type="hidden" name="eb_no" value="1">
-  <input type="hidden" name="memberno" value="1">
+  <input type="hidden" name="eb_no" value="2">
+  <input type="hidden" name="m_no" value="1">
   
   <div class="form-group">
      <label class="control-label col-md-2">리뷰 내용</label>
