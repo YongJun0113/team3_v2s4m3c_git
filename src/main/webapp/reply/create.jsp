@@ -23,11 +23,11 @@
   
  <FORM name='frm' method='POST' action='./create.do' class="form-horizontal">
   <input type="hidden" name="review_no" value="1">
-  <input type="hidden" name="memberno" value="1">
+  <input type="hidden" name="m_no" value="1">
   
   <div class="form-group">
-     <label class="control-label col-md-3">댓글</label>
-     <div class="col-md-9">
+     <label class="control-label col-md-1">댓글</label>
+     <div class="col-md-11">
       <textarea id="test" name="reply_cont" rows="3" cols="70"></textarea>
 
      </div>

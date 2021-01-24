@@ -41,7 +41,7 @@
       </c:choose>
       <LI class='li_none'>
         <br>
-        <button type='button' onclick="location.href='./create.do'" class="btn btn-primary">새로운 리뷰 등록</button>
+        <button type='button' onclick="location.href='./create.do'" class="btn btn-primary">새로운 댓글 등록</button>
         <button type='button' onclick="location.href='./list.do'" class="btn btn-primary">목록</button>
       </LI>
     </UL>
