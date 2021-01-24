@@ -16,7 +16,7 @@ public class Member_Customer_join {
   /** 부모 테이블 회원 번호 */
   private int r_mno;
   /** 부모 테이블 회원 아이디 */
-  private String r_mid = "";
+  private String r_id = "";
   /** 부모 테이블 회원 이름 */
   private String r_mname = "";
   /** 부모 테이블 회원 이메일 */
@@ -129,11 +129,11 @@ public class Member_Customer_join {
   public void setCs_cnt(int cs_cnt) {
     this.cs_cnt = cs_cnt;
   }
-  public String getR_mid() {
-    return r_mid;
+  public String getR_id() {
+    return r_id;
   }
-  public void setR_mid(String r_mid) {
-    this.r_mid = r_mid;
+  public void setR_id(String r_id) {
+    this.r_id = r_id;
   }
   public String getR_mpasswd() {
     return r_mpasswd;

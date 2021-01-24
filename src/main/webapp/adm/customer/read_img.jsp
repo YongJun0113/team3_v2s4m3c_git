@@ -4,7 +4,7 @@
 <jsp:include page="/adm/menu/top.jsp" flush='false' />
 
 <c:set var="cs_no" value="${customerVO.cs_no}" />
-<c:set var="m_no" value="${customerVO.m_no }" />
+<c:set var="m_no" value="${customerVO.m_no}" />
 
   <DIV class="title_line">
    <A href="./list_by_mno_paging.do?m_no=${m_no}&nowPage=${param.nowPage}">
@@ -56,7 +56,7 @@
              <c:set var="cs_file1" value="${customerVO.cs_file1}" />
              <c:if test="${cs_file1.endsWith('jpg') || cs_file1.endsWith('png') || cs_file1.endsWith('gif')}">
                 <div style="width: 50%; float: left; margin-right: 10px;">
-                  <IMG src="../../customer/storage/main_images/${cs_file1}" style="height:450px; ">
+                  <IMG src="./storage/main_images/${cs_file1}" style="height:450px; ">
                 </div>      
              </c:if>
             <DIV>${customerVO.cs_contents}</DIV>

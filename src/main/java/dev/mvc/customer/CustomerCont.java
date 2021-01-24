@@ -50,15 +50,15 @@ public class CustomerCont {
    */
   @RequestMapping(value="/customer/create.do", method = RequestMethod.GET)
   public ModelAndView create(HttpSession session,
-                                @RequestParam(value="m_no", defaultValue="1") int memberno) {
+                                @RequestParam(value="m_no", defaultValue="1") int m_no) {
     ModelAndView mav = new ModelAndView();
     
     if (memberProc.isMember(session)== true) {
-      MemberVO memberVO = this.memberProc.read(memberno);  // 부모 테이블 기본키 가져오기
+      MemberVO memberVO = this.memberProc.read(m_no);  // 부모 테이블 기본키 가져오기
       System.out.println("m_no:"+memberVO.getMemberno());
       
       ArrayList<TypeCode> type_list = CodeTable.getTypeCode();
-      mav.addObject("m_no", memberno);   // memberno 전달
+      mav.addObject("m_no", m_no);   // m_no 전달
       mav.addObject("type_list", type_list);
       mav.setViewName("/customer/create"); // /webapp/customer/create.jsp 
     } else {
@@ -74,7 +74,7 @@ public class CustomerCont {
    */
   @RequestMapping(value="/customer/create.do", method = RequestMethod.POST)
   public ModelAndView create(HttpServletRequest request, CustomerVO customerVO,
-                                  @RequestParam(value="memberno", defaultValue="1") int memberno) {
+                                  @RequestParam(value="m_no", defaultValue="1") int m_no) {
     
     ModelAndView mav = new ModelAndView();
     
@@ -84,7 +84,7 @@ public class CustomerCont {
     String file1 = "";         // 메인 이미지
     String thumb1 = "";     // 메인 이미지 미리보기
         
-    String upDir = Tool.getRealPath(request, "/customer/storage/main_images"); // 절대 경로
+    String upDir = Tool.getRealPath(request, "/adm/customer/storage/main_images"); // 절대 경로
     // 전송 파일이 없어서도 fnamesMF 객체가 생성됨.
     MultipartFile mf = customerVO.getFile1MF();                // mf에 File1MF 값 저장
     long size1 = mf.getSize();                                // File1MF 파일 크기 반환
@@ -105,11 +105,11 @@ public class CustomerCont {
     // -------------------------------------------------------------------
     // 파일 전송 코드 종료
     // -------------------------------------------------------------------
-    MemberVO memberVO = this.memberProc.read(memberno);
+    MemberVO memberVO = this.memberProc.read(m_no);
    
     int cnt = this.customerProc.create(customerVO);   // 글 등록
     mav.addObject("cnt", cnt);   // 
-    mav.addObject("m_no", memberno);
+    mav.addObject("m_no", m_no);
     mav.addObject("m_id", memberVO.getId());
     
     System.out.println("m_no:"+memberVO.getMemberno());
@@ -556,7 +556,7 @@ public class CustomerCont {
     mav.addObject("passwd_cnt", passwd_cnt); // add a request 
     
     mav.addObject("m_no", member_Customer_join.getM_no());
-    mav.addObject("m_id", member_Customer_join.getR_mid());
+    mav.addObject("m_id", member_Customer_join.getR_id());
     mav.addObject("url", "delete_msg");
     
     mav.setViewName("redirect:/customer/msg.do");

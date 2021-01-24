@@ -59,7 +59,7 @@
 
  <!-- member+custoemr Join , 후에 member랑 통합할 예정-->
 <!--   <select id="list_my_inquiry" resultType="Member_Customer_join" parameterType="int">
-    SELECT r.memberno as r_mno, r.id as r_mid, r.mname as r_mname, r.email as r_email,
+    SELECT r.memberno as r_mno, r.id as r_id, r.mname as r_mname, r.email as r_email,
                c.cs_no, c.m_no, c.cs_type, c.cs_file1, c.cs_thumb1, cs_size1 ,cs_title, c.cs_contents, c.cs_rdate, c.cs_cnt
     FROM member r, customer c
     WHERE r.m_no = c.m_no AND c.m_no=#{m_no}
@@ -73,7 +73,7 @@
   </select>
   
   <select id="read" resultType="Member_Customer_join" parameterType="int">
-    SELECT r.memberno as r_mno, r.id as r_mid, r.mname as r_mname, r.email as r_email,
+    SELECT r.memberno as r_mno, r.id as r_id, r.mname as r_mname, r.email as r_email,
                c.cs_no, c.m_no, c.cs_type, c.cs_file1, c.cs_thumb1, cs_size1 ,cs_title, c.cs_contents, c.cs_rdate, c.cs_cnt
     FROM member r, customer c
     WHERE r.m_no = c.m_no AND cs_no=#{cs_no}

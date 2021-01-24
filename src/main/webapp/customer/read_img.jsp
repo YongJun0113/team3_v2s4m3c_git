@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>eBooks3</title>
+<title>team3 project</title>
 
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
@@ -26,7 +26,7 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 
 <c:set var="cs_no" value="${member_Customer_join.cs_no}" />
-<c:set var="m_no" value="${member_Customer_join.m_no }" />
+<c:set var="m_no" value="${member_Customer_join.m_no}" />
 
   <DIV class="title_line">
     <A href="./list_my_inquiry.do?m_no=${param.m_no}&m_id=${param.m_id}">나의 1:1 문의</A> > 조회
@@ -86,7 +86,7 @@
            <c:set var="cs_file1" value="${member_Customer_join.cs_file1}" />
              <c:if test="${cs_file1.endsWith('jpg') || cs_file1.endsWith('png') || cs_file1.endsWith('gif')}">
                 <div style="width: 30%; float: left; margin-right: 10px; margin-left: 10px;">
-                   <IMG src="./storage/main_images/${cs_file1}" style="width: 200px; height: 220px;">
+                   <IMG src="../adm/customer/storage/main_images/${cs_file1}" style="width: 200px; height: 220px;">
                 </div>      
              </c:if>
             <DIV>${member_Customer_join.cs_contents}</DIV>
