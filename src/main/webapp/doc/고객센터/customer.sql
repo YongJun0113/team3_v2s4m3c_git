@@ -1,4 +1,9 @@
-  
+-- 테이블 삭제
+DROP TABLE customer CASCADE CONSTRAINTS; 
+
+-- 컬럼 크기 변경
+ALTER TABLE customer MODIFY m_no NUMBER(6);
+
 /**********************************/
 /* Table Name: 고객센터 */
 /**********************************/
@@ -12,7 +17,7 @@ CREATE TABLE customer(
 		cs_size1                      		NUMBER(10)		     DEFAULT 0		 NULL ,
 		cs_rdate                      		DATE		                 NOT NULL,
 		cs_cnt                        		    NUMBER(10)		     DEFAULT 0		 NOT NULL,
-		m_no                          		NUMBER(10)		     NULL,
+		m_no                          		NUMBER(6)		     NULL,
         cs_passwd                           VARCHAR2(60)     DEFAULT '123456'    NOT NULL,
         FOREIGN KEY (m_no) REFERENCES member (m_no)
 );
