@@ -32,7 +32,7 @@
 <ul class="sub_gnb"> 
 <A class='top_menu_link'  href='${pageContext.request.contextPath}/event/list.do'>이벤트</A> <span class='top_menu1'> | </span>
  <A class='top_menu_link'  href='${pageContext.request.contextPath}/qnagrp/list.do'>QNA</A> <span class='top_menu1'> | </span>
- <A class='top_menu_link'  href='${pageContext.request.contextPath}/customer/list_my_inquiry.do?m_no=${param.m_no}&m_id=${sessionScope.m_id}'>고객센터</A> <span class='top_menu1'> | 
+ <A class='top_menu_link'  href='${pageContext.request.contextPath}/customer/list_all.do}'>고객센터</A> <span class='top_menu1'> |  
  </span> 
 </ul> 
 </li> 
