@@ -40,7 +40,7 @@
 <ul class="sub_gnb"> 
 <A class='top_menu_link'  href='${pageContext.request.contextPath}/memberph/list.do'>주문 내역</A> <span class='top_menu1'> | </span> 
 <A class='top_menu_link'  href='${pageContext.request.contextPath}/review/list.do'>리뷰 </A> <span class='top_menu1'> | </span>
-<A class='top_menu_link'  href='${pageContext.request.contextPath}/notice/list.do'>공지사항 </A> <span class='top_menu1'></span>
+<A class='top_menu_link'  href='${pageContext.request.contextPath}/notice/list.do'>공지사항</A> <span class='top_menu1'></span>
 </ul> 
 </li> 
 <li><a href="#"> 관리자 페이지</a></li>
