@@ -40,9 +40,11 @@
 <ul class="sub_gnb"> 
 <A class='top_menu_link'  href='${pageContext.request.contextPath}/memberph/list.do'>주문 내역</A> <span class='top_menu1'> | </span> 
 <A class='top_menu_link'  href='${pageContext.request.contextPath}/review/list.do'>리뷰 </A> <span class='top_menu1'> | </span>
+<A class='top_menu_link'  href='${pageContext.request.contextPath}/notice/list.do'>공지사항</A> <span class='top_menu1'></span>
 </ul> 
 </li> 
-<li><a href="#"> 관리자 페이지</a></li> 
+<li><a href="#"> 관리자 페이지</a></li>
+<ul class="sub_gnb">  
 <c:choose>
         <c:when test="${sessionScope.id_admin == null}">
           <A class='top_menu_link'  href='${pageContext.request.contextPath}/admin/login.do' >관리자 Login</A>
@@ -53,7 +55,7 @@
           <A class='top_menu_link'  href='${pageContext.request.contextPath}/member/categrp/list.do'>카테고리 그룹</A><span class='top_menu_sep'>&nbsp;</span>
           <A class='top_menu_link'  href='${pageContext.request.contextPath}/cate/list_all.do'>전체 카테고리</A><span class='top_menu_sep'>&nbsp;</span>
           <A class='top_menu_link'  href='${pageContext.request.contextPath}/ebook/list.do'>eBook 전체 목록</A><span class='top_menu_sep'>&nbsp;</span>    
-          <A class='top_menu_link'  href='${pageContext.request.contextPath}/notice/list.do'>공지사항 </A> <span class='top_menu1'> | </span>
+          <A class='top_menu_link'  href='${pageContext.request.contextPath}/ncate/list_all.do'>공지사항 카테고리 목록</A> <span class='top_menu_sep'></span>
         </c:otherwise>
 </c:choose>
 </ul> 
