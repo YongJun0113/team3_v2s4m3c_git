@@ -145,6 +145,26 @@ public class CustomerCont {
 
     return mav;
   }
+  
+  /**
+   * 전체 목록 (관리자만 접근 가능할 예정)
+   * @return
+   */
+  @RequestMapping(value="/customer/list_all.do", method = RequestMethod.GET)
+  public ModelAndView list(CustomerVO customerVO,
+      @RequestParam(value="nowPage", defaultValue="1") int nowPage) { 
+    ModelAndView mav = new ModelAndView();
+    
+    List<CustomerVO> list = this.customerProc.list_all();
+    
+    mav.addObject("list", list);
+    mav.addObject("nowPage", nowPage);
+    
+    mav.setViewName("/customer/list_all");
+
+    
+    return mav;
+  }
 
   /**
    * 페이징 + 목록 지원 (관리자만 접근 가능)
