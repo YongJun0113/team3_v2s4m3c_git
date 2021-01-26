@@ -123,7 +123,7 @@ public class CustomerCont {
   }
   
   /**
-   * 전체 목록 (관리자만 접근 가능할 예정)
+   * 전체 목록 (관리자만 접근 가능)
    * @return
    */
   @RequestMapping(value="/adm/customer/list_all.do", method = RequestMethod.GET)
