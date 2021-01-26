@@ -48,6 +48,7 @@
   <!-- 데이터과학자 -->
   <context:component-scan base-package="dev.mvc.reply"/>
   <context:component-scan base-package="dev.mvc.notice"/>
+  <context:component-scan base-package="dev.mvc.ncate"/>
   <context:component-scan base-package="dev.mvc.review"/>
   
   <!-- 데이터아키텍트  -->

@@ -39,6 +39,7 @@
                             dev.mvc.ebook,
                             dev.mvc.ebook.attachfile,
                             dev.mvc.reply,
+                            dev.mvc.ncate,
                             dev.mvc.notice,
                             dev.mvc.review,
                             dev.mvc.customer"/>
