@@ -45,7 +45,7 @@
     <A class='top_menu_link'  href='${pageContext.request.contextPath}/qnagrp/list.do'>QNA</A> <span class='top_menu1'> | </span>
   </li>
   <li>
-    <A class='top_menu_link'  href='${pageContext.request.contextPath}/customer/list_all.do}'>고객센터</A> <span class='top_menu1'> |  </span>
+    <A class='top_menu_link'  href='${pageContext.request.contextPath}/customer/list_all.do'>고객센터</A> <span class='top_menu1'> |   </span>
   </li>
 </ul> 
 </li> 
