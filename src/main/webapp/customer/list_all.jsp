@@ -18,22 +18,21 @@
 </head>
  
 <body>
-<jsp:include page="/menu/top.jsp" flush='false' />
   <DIV class="title_line">
-    1:1 문의 내역
+    고객센터
   </DIV>
   
-  <ASIDE class="aside_left">
-    <A href="../member/list_all.do">고객 리스트</A> >
+  <div class="aside_left">
+    <A href="../index.do">Home</A> >
     <A href="./list_all.do"> 모든 1:1 문의</A>
-  </ASIDE>
-  <ASIDE class="aside_right">
-    <A href="./create.do">문의하기</A>
+  </div>
+  <div class="aside_right">
+    <A href="./create.do">문의 등록</A>
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_mno_grid1.do?m_no=${customerVO.m_no}">GRID GALLERY</A>    
-  </ASIDE>
+    <%--     <span class='menu_divide' >│</span>
+    <A href="./list_by_mno_grid1.do?m_no=${param.m_no}">GRID GALLERY</A>   --%>  
+  </div>
   
   <DIV class='menu_line'></DIV>
   
@@ -57,7 +56,6 @@
           <th style='text-align: center;'>회원번호</th>
           <th style='text-align: center;'>조회수</th>
         </tr>
-      
       </thead>
       
       <%-- table 내용 --%>
@@ -71,7 +69,7 @@
             <td style='vertical-align: middle; text-align: center;'>
               <c:choose>
                 <c:when test="${cs_thumb1.endsWith('jpg') || cs_thumb1.endsWith('png') || cs_thumb1.endsWith('gif')}">
-                  <IMG src="./storage/main_images/${cs_thumb1}" style="width: 120px height:80px;"> 
+                  <IMG src="../adm/customer/storage/main_images/${cs_thumb1}" style="width: 120px height:80px;"> 
                 </c:when>
                 <c:otherwise> <!-- 이미지가 아닌 일반 파일 -->
                   ${customerVO.cs_file1}
@@ -90,6 +88,7 @@
     </table>
     <br><br>
   </div>
+ 
  
 <jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>

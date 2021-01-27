@@ -28,11 +28,6 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
 
-<!-- <ASIDE class="aside_left">
-  <A href='./list_all.do'>접수된 문의내역</A>
-</ASIDE> 
-<div class='menu_line'></div> -->
-
 <DIV style='width: 100%; margin: 0px auto;'>
   <FORM name='frm' method='POST' action='./create.do' class="container_modal form-horizontal" enctype="multipart/form-data">
      <div class="modal_contentBox">   
@@ -40,7 +35,7 @@
        <hr style="border-color: #ccc;">
 
         <%-- FK 전달 --%>
-        <input type='hidden' name='m_no' id='m_no' value="${param.m_no}">
+        <input type='hidden' name='m_no' id='m_no' value="${sessionScope.m_no}">
         
         <div class="inner_container">
          <label class="col-md-2 control-label" for="cs_type" style="text-align: center;">문의유형</label>
@@ -71,12 +66,11 @@
                           value='' placeholder="파일 선택">
            </div>
          </div>
-         <div class="clearfix">
-           <button type="button" onclick="javascript:history.back();" class="btn_cancel" style="background-color: #f44336;">취소</button>  
+         <div class=content_bottom_button> 
            <button type="submit" class="btn_send">등록</button>
          </div>
-       </div>  <!--  End inner_container  --> 
-     </div>  <!--  End modal_contentBox -->
+       </div>  <!--  // inner_container  --> 
+     </div>  <!--  // modal_contentBox -->
   </FORM>
 </DIV>
  

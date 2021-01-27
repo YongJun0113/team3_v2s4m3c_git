@@ -20,16 +20,16 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
   <DIV class="title_line">
-    <A href="./list_my_inquiry.do?m_no=${param.m_no}&m_id=${param.m_id}">나의 1:1 문의</A> > ${member_Customer_join.r_mname}님 문의 삭제
+    <A href="./list_all.do">문의 내역</A> > ${member_Customer_join.r_mname}님 문의 삭제
     <div style="float: right; margin-right: 8px;">
-    <A href="./create.do?m_no=${param.m_no}&m_id=${param.m_id}">문의하기</A>
+    <A href="./create.do">문의 등록</A>
     </div>
   </DIV>
  
   <FORM name='frm' method='POST' action='./delete.do' class="container_modal form-horizontal">
     <input type='hidden' name='cs_no' value='${param.cs_no}'>
-    <input type="hidden" name="m_no" value="${member_Customer_join.m_no}">
-    <input type="hidden" name="m_id" value="${param.m_id}">
+    <input type="hidden" name="m_no" value="${sessionScope.m_no}">
+    <input type="hidden" name="id" value="${sessionScope.id}">
      <div class="modal_contentBox">
       <div class="inner_container">         
         <div  style='text-align: center; padding: 30px 0 30px 0;'>
@@ -39,7 +39,7 @@
             <input type='password' class="form-control" name='r_mpasswd'  value='' placeholder="계정 패스워드" style='width: 25%; margin-right: -28px;' required="required">
           </div>
           
-          <div class="clearfix">   
+          <div class="clearfix" >   
            <button type = "button" onclick = "history.back()" class="btn_cancel" style="background-color: #808080;">취소</button>
            <button type = "submit" class="btn_send" style="background-color: #f2960d;">삭제</button>
           </div>
@@ -47,6 +47,7 @@
       </div>  <!--  end "inner_container"       -->
     </div>    <!--  end  "modal_contentBox"  -->
   </FORM>
+ 
  
 <jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>

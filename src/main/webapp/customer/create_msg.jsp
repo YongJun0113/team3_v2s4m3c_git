@@ -21,11 +21,11 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
  
   <DIV class="title_line">
-    1:1 문의 내역
+    고객센터
   </DIV>
   
   <div class="menu_line float-right">
-    <A href="./create.do?m_no=${param.m_no}">문의하기</A>
+    <A href="./create.do">문의하기</A>
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <%-- <span class='menu_divide' >│</span>
@@ -35,8 +35,8 @@
 <DIV class='message contentBox'>
 <input type='hidden' name='cs_type' id='cs_type' value="${param.cs_type}">
 <input type='hidden' name='cs_no' id='cs_no' value="${param.cs_no}">
-<input type="hidden" name="m_no" value="${param.m_no}">
-<input type="hidden" name="m_id" value="${param.m_id}">
+<input type="hidden" name="m_no" value="${sessionScope.m_no}">
+<input type="hidden" name="m_id" value="${sessionScope.id}">
   <fieldset class='fieldset_basic'>
     <UL>
       <c:choose>
@@ -56,8 +56,8 @@
         <c:choose>
           <c:when test="${param.cnt == 1 }">
             <button type='button' 
-                         onclick="location.href='./create.do?m_no=${param.m_no}&m_id=${param.m_id}'"
-                         class="btn btn-info">1:1 문의 등록</button>
+                         onclick="location.href='./create.do'"
+                         class="btn btn-info">문의 등록</button>
           </c:when>
           <c:otherwise>
             <button type='button' 
@@ -67,8 +67,8 @@
         </c:choose>
                     
         <button type='button' 
-                    onclick="location.href='list_my_inquiry.do?m_no=${param.m_no}&m_id=${param.m_id}'"
-                    class="btn btn-info">내 1:1 문의 내역</button>
+                    onclick="location.href='list_all.do'"
+                    class="btn btn-info">문의 내역</button>
 <%--         <button type='button' 
                     onclick="location.href='./read.do?cs_no=${cs_no}&m_no=${param.m_no}&m_id=${param.m_id}'"
                     class="btn btn-info">작성된 문의 보기</button> --%>

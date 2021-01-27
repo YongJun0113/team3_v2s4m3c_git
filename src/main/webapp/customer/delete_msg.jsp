@@ -23,9 +23,9 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class="title_line">
-  <A href="./list_my_inquiry.do?m_no=${param.m_no}&m_id=${param.m_id}">나의 1:1 문의</A> > 알림
+  <A href="./list_all.do">문의 내역</A> > 알림
   <div style="float: right; margin-right: 8px;">
-  <A href="./create.do?m_no=${param.m_no}&m_id=${param.m_id}">문의하기</A>
+  <A href="./create.do">문의하기</A>
   </div>
 </DIV>
 
@@ -59,10 +59,10 @@
       
       <c:choose>
         <c:when test="${param.cnt == 1 && param.passwd_cnt == 1}">
-          <div class="col-md-8" style="padding: 28px auto; margin-left: -13px;">
+          <div class="clearfix">
             <button type='button' 
-                        onclick="location.href='./list_my_inquiry.do?m_no=${param.m_no}&m_id=${param.m_id}'"
-                        class="btn_send" style="padding: 16px 20px;;">나의 1:1 문의</button>                        
+                        onclick="location.href='./list_all.do'"
+                        class="btn_send" style="padding: 16px 20px;">문의 내역</button>                        
           </div>
         </c:when>
         <c:otherwise>

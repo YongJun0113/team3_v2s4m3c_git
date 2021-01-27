@@ -94,7 +94,7 @@
   <select id="passwd_check" parameterType="HashMap" resultType="int">
     SELECT COUNT(*) as passwd_cnt
     FROM member r, customer c
-    WHERE r.m_no = c.m_no AND c.cs_no=#{cs_no} AND r.m_passwd=#{r_mpasswd}
+    WHERE r.m_no = c.m_no AND c.cs_no=#{cs_no} AND r.passwd=#{r_mpasswd}
   </select>
   
   <delete id="delete"  parameterType="int" >

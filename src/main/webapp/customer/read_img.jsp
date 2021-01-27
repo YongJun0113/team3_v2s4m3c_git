@@ -26,10 +26,10 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 
 <c:set var="cs_no" value="${member_Customer_join.cs_no}" />
-<c:set var="m_no" value="${member_Customer_join.m_no}" />
+<c:set var="m_no" value="${member_Customer_join.m_no }" />
 
   <DIV class="title_line">
-    <A href="./list_my_inquiry.do?m_no=${param.m_no}&m_id=${param.m_id}">나의 1:1 문의</A> > 조회
+    <A href="./list_all.do">모든 문의 내역</A> > 조회
     <div style="float: right; margin-right: 8px;">
     <A href="./create.do?m_no=${param.m_no}&m_id=${param.m_id}">문의하기</A>
     </div>
@@ -47,9 +47,9 @@
      </select>
     </div>
     <div class="col-md-1" style="text-align: center; margin-left: 45px;  padding: 6px 7px;">
-      <A href='./update.do?cs_no=${cs_no}&m_no=${param.m_no}&m_id=${param.m_id}'>수정</A>
+      <A href='./update.do?cs_no=${cs_no}'>수정</A>
       <div style="border-bottom: solid 1px #d8d8d8;"></div>
-      <A href='./delete.do?cs_no=${cs_no}&m_no=${param.m_no}&m_id=${param.m_id}'>삭제</A>
+      <A href='./delete.do?cs_no=${cs_no}'>삭제</A>
     </div>
     <div class="col-md-3" style="text-align: center; margin-left: 45px;  padding: 6px 7px;">
       <c:choose>
@@ -78,7 +78,7 @@
       <input type="hidden" name="m_no" value="${m_no}">
       <fieldset class="fieldset">
         <ul>
-          <li class="li_none" style='border-bottom: solid 1px #AAAAAA;'>
+          <li class="li_none" style='border-bottom: dotted 1px #AAAAAA;'>
             <span>${member_Customer_join.cs_title}</span>
             (조회수 : <span>${member_Customer_join.cs_cnt}</span>)
           </li>

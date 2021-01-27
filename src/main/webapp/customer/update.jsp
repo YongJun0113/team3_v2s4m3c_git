@@ -28,22 +28,17 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='title_line'> 
-  <A href="./list_my_inquiry.do?m_no=${param.m_no}&m_id=${param.m_id}">
-  나의 1:1 문의
+  <A href="./list_all.do">
+   모든 문의 내역
   </A>
   > 수정
 </DIV>
 
-<!-- <ASIDE class="aside_left">
-  <A href='./list_all.do'>접수된 문의내역</A>
-</ASIDE> 
-<div class='menu_line'></div> -->
-
 <FORM name='frm' method='POST' action='./update.do' class="container_modal form-horizontal">
  <div class="modal_contentBox">
   <input type='hidden' name='cs_no' id='cs_no' value="${param.cs_no }">
-  <input type='hidden' name='m_no' id='m_no' value="${param.m_no }">
-  <input type='hidden' name='m_id' id='m_id' value="${param.m_id}">
+  <%--   <input type='hidden' name='m_no' id='m_no' value="${param.m_no }">
+  <input type='hidden' name='m_id' id='m_id' value="${param.m_id}"> --%>
 
   <div class="inner_container">
    <label class="col-md-2 control-label" for="cs_type" style="text-align: center;">문의유형</label>
@@ -91,7 +86,6 @@
  </div>  <!--  End modal_contentBox -->
 
 </FORM>
- 
 <jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
  

@@ -23,15 +23,14 @@
  
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
+
 <DIV class='title_line'> 
-  <A href="./list_my_inquiry.do?m_no=${param.m_no}&m_id=${param.m_id}">
-  나의 1:1 문의
-  </A>
+  <A href="./list_all.do">문의 내역</A>
   > 수정
 </DIV>
-<input type='hidden' name='cs_no' id='cs_no' value="${param.cs_no }">
-<input type='hidden' name='m_no' id='m_no' value="${param.m_no }">
-<input type='hidden' name='m_id' id='m_id' value="${param.m_id }">
+<input type='hidden' name='cs_no' id='cs_no' value="${param.cs_no}">
+<input type='hidden' name='m_no' id='m_no' value="${sessionScope.m_no}">
+<input type='hidden' name='id' id='id' value="${sessionScope.id}">
 <DIV class='message'>
   <fieldset class='fieldset_basic'>
     <UL>
@@ -52,7 +51,7 @@
       </c:choose>
       </UL> 
       <div class='clearfix'>
-        <button type='button' onclick="location.href='./list_my_inquiry.do?m_no=${param.m_no}&m_id=${param.m_id}'"  class="btn_cancel" style="background-color: #808080;">취소</button>
+        <button type='button' onclick="location.href='./list_all.do'"  class="btn_cancel" style="background-color: #808080;">취소</button>
         <button type='button' onclick="history.back()" class="btn_send" style="background-color: #008040;">다시 시도</button>
       </div>
   </fieldset>

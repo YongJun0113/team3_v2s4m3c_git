@@ -54,11 +54,10 @@ public class CustomerCont {
     ModelAndView mav = new ModelAndView();
     
     if (memberProc.isMember(session)== true) {
-      MemberVO memberVO = this.memberProc.read(m_no);  // 부모 테이블 기본키 가져오기
-      System.out.println("m_no:"+memberVO.getMemberno());
+      System.out.println("get m_no:"+(int)(session.getAttribute("m_no")));
       
       ArrayList<TypeCode> type_list = CodeTable.getTypeCode();
-      mav.addObject("m_no", m_no);   // m_no 전달
+      mav.addObject("m_no", (int)(session.getAttribute("m_no")));   // m_no 전달
       mav.addObject("type_list", type_list);
       mav.setViewName("/customer/create"); // /webapp/customer/create.jsp 
     } else {
@@ -69,12 +68,12 @@ public class CustomerCont {
   }
   
   /**
-   * 등록 처리 http://localhost:9090/team3/customer/create.do
+   * 등록 처리 http://localhost:9090/team3_testgit/customer/create.do
    * @return
    */
   @RequestMapping(value="/customer/create.do", method = RequestMethod.POST)
   public ModelAndView create(HttpServletRequest request, CustomerVO customerVO,
-                                  @RequestParam(value="m_no", defaultValue="1") int m_no) {
+                                         HttpSession session, @RequestParam(value="m_no", defaultValue="1") int m_no) {
     
     ModelAndView mav = new ModelAndView();
     
@@ -105,15 +104,14 @@ public class CustomerCont {
     // -------------------------------------------------------------------
     // 파일 전송 코드 종료
     // -------------------------------------------------------------------
-    MemberVO memberVO = this.memberProc.read(m_no);
-   
+       
     int cnt = this.customerProc.create(customerVO);   // 글 등록
-    mav.addObject("cnt", cnt);   // 
-    mav.addObject("m_no", m_no);
-    mav.addObject("m_id", memberVO.getId());
+    mav.addObject("cnt", cnt);  
+    mav.addObject("m_no", (int)(session.getAttribute("m_no")));
+    mav.addObject("id", session.getAttribute("id"));
     
-    System.out.println("m_no:"+memberVO.getMemberno());
-    System.out.println("m_id:"+memberVO.getId());
+    System.out.println("m_no:"+(int)(session.getAttribute("m_no")));
+    System.out.println("id:"+session.getAttribute("id"));
     System.out.println("cnt:"+cnt);
     
     mav.addObject("url", "create_msg");
@@ -121,6 +119,7 @@ public class CustomerCont {
 
     return mav;
   }
+  
   
   /**
    * 전체 목록 (관리자만 접근 가능)
@@ -265,7 +264,7 @@ public class CustomerCont {
   }
   
   /**
-   * 나의 문의 조회(회원용) 
+   * 조회
    * @return
    */
   @RequestMapping(value="/customer/read.do", method=RequestMethod.GET)
@@ -336,7 +335,7 @@ public class CustomerCont {
    * @return
    */
   @RequestMapping(value="/customer/list_my_inquiry.do", method=RequestMethod.GET)
-  public ModelAndView list_my_inquiry(@RequestParam(value="m_no", defaultValue="2") int m_no,
+  public ModelAndView list_my_inquiry(@RequestParam(value="m_no", defaultValue="1") int m_no,
                                                    @RequestParam(value="cs_no", defaultValue="1")  int cs_no, HttpSession session) {
     ModelAndView mav = new ModelAndView();
     
@@ -368,7 +367,7 @@ public class CustomerCont {
   }  
   
   /**
-   * 수정 폼, 첨부파일 변경X (회원용)
+   * 수정 폼, 첨부파일 변경X 
    * @param cs_no
    * @return
    */
@@ -400,7 +399,7 @@ public class CustomerCont {
   }
   
   /**
-   * 수정 처리, 첨부파일 X (회원용)
+   * 수정 처리, 첨부파일 수정은 X 
    * @param member_Customer_join
    * @return
    */
@@ -418,17 +417,16 @@ public class CustomerCont {
     
     passwd_cnt = this.customerProc.passwd_check(hashMap);
     
-    MemberVO memberVO = this.memberProc.read(member_Customer_join.getM_no());
+    // MemberVO memberVO = this.memberProc.read(member_Customer_join.getM_no());
     
     if(passwd_cnt == 1) {  // 패스워드 일치
       cnt = this.customerProc.update(member_Customer_join);
-      mav.setViewName("redirect:/customer/read.do?cs_no="+member_Customer_join.getCs_no()+"&m_no="+member_Customer_join.getM_no()
-                               +"&m_id="+memberVO.getId());
+      mav.setViewName("redirect:/customer/read.do?cs_no="+member_Customer_join.getCs_no());
     } else {
       mav.addObject("cnt", cnt);
       mav.addObject("url","update_msg");
-      mav.addObject("m_no", member_Customer_join.getM_no());
-      mav.addObject("m_id", memberVO.getId());
+      // mav.addObject("m_no", member_Customer_join.getM_no());
+      // mav.addObject("m_id", memberVO.getM_id());
       mav.setViewName("redirect:/customer/msg.do");
     }
 
@@ -510,7 +508,7 @@ public class CustomerCont {
 
   
   /**
-   * 삭제 폼 (회원용)
+   * 삭제 폼
    * @param cs_no
    * @return
    */
@@ -534,7 +532,7 @@ public class CustomerCont {
   }
   
   /**
-   * 삭제 처리 + 파일 삭제(회원용)
+   * 삭제 처리 + 파일 삭제
    * @param cs_no
    * @param m_no
    * @param passwd
@@ -542,6 +540,7 @@ public class CustomerCont {
    */
   @RequestMapping(value = "/customer/delete.do", method= RequestMethod.POST)
   public ModelAndView delete(HttpServletRequest request,
+                                        HttpSession session,
                                         int cs_no,
                                         int m_no,
                                         String r_mpasswd) {
@@ -575,15 +574,14 @@ public class CustomerCont {
     mav.addObject("cnt", cnt);                       // add request 
     mav.addObject("passwd_cnt", passwd_cnt); // add a request 
     
-    mav.addObject("m_no", member_Customer_join.getM_no());
-    mav.addObject("m_id", member_Customer_join.getR_id());
+    mav.addObject("m_no", (int)(session.getAttribute("m_no")));   // m_no 전달
+    // mav.addObject("m_id", member_Customer_join.getR_mid());
     mav.addObject("url", "delete_msg");
     
     mav.setViewName("redirect:/customer/msg.do");
 
     return mav;
   }
-  
   
   /**
    * 삭제 폼(관리자용)
