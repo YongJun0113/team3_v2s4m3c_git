@@ -43,10 +43,10 @@ public class MemberVO {
   private String passwd_save = "";
   /** 이동할 주소 저장 */
   private String url_address = "";
-  public int getMemberno() {
+  public int getM_no() {
     return m_no;
   }
-  public void setMemberno(int m_no) {
+  public void setM_no(int m_no) {
     this.m_no = m_no;
   }
   public String getId() {

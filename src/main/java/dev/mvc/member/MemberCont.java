@@ -192,7 +192,7 @@ public class MemberCont {
     
     int cnt= memberProc.update(memberVO);
     mav.addObject("cnt", cnt); // redirect parameter 적용
-    mav.addObject("m_no", memberVO.getMemberno()); // redirect parameter 적용
+    mav.addObject("m_no", memberVO.getM_no()); // redirect parameter 적용
     mav.addObject("url", "update_msg"); // update_msg.jsp, redirect parameter 적용
 
     mav.setViewName("redirect:/member/msg.do");
@@ -361,7 +361,7 @@ public class MemberCont {
 //    if (count == 1) { // 로그인 성공
 //      // System.out.println(id + " 로그인 성공");
 //      MemberVO memberVO = memberProc.readById(id);
-//      session.setAttribute("m_no", memberVO.getMemberno());
+//      session.setAttribute("m_no", memberVO.getM_no());
 //      session.setAttribute("id", id);
 //      session.setAttribute("mname", memberVO.getMname());
 //      
@@ -402,7 +402,7 @@ public class MemberCont {
     if (count == 1) { // 로그인 성공
       // System.out.println(id + " 로그인 성공");
       MemberVO memberVO = memberProc.readById(id);
-      session.setAttribute("m_no", memberVO.getMemberno());
+      session.setAttribute("m_no", memberVO.getM_no());
       session.setAttribute("id", id);
       session.setAttribute("mname", memberVO.getMname());
       
@@ -441,7 +441,8 @@ public class MemberCont {
       ck_passwd_save.setMaxAge(60 * 60 * 72 * 10); // 30 day
       response.addCookie(ck_passwd_save);
       // -------------------------------------------------------------------
-      
+      mav.addObject("m_no", memberVO.getM_no());
+      mav.addObject("id", memberVO.getId());
       mav.setViewName("redirect:/index.do");  
     } else {
       mav.setViewName("redirect:/member/login_fail_msg.jsp");
