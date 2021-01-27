@@ -1,0 +1,58 @@
+@charset "EUC-KR";
+
+a:hover {  /* A 태그에 마우스가 올라간 상태 */
+   text-decoration: none; /* 밑줄 출력 */
+   color: #99ce90;
+}
+
+.page-item.active .page-link {
+   background-color: #432e27;
+   border-color: #432e27;
+}
+
+  /* ebook css */
+  
+  .ebook_menu { display: inline-block; }
+  .ebook_nav li { 
+    float: left; 
+    margin: 0 10px;
+    list-style: none; 
+  }
+  
+  .ebook_list_thumb .card-title {
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .ebook_list_thumb .card-title a:hover {
+    text-decoration: none;
+    color: #2f170f;
+  }
+
+  .ebook_list_thumb li {
+    margin: 5px 0;
+  }
+  
+  .ebook_list_thumb .author {
+    font-size: 0.8em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .ebook_list_thumb .publisher {
+    font-size: 0.8em;
+    color: #bbb;
+  }
+  
+  .ebook_list_thumb .price {
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+  
+  /* 사용자 화면 */
+  .ebook_categrp {
+    cursor: pointer;
+  }
