@@ -18,6 +18,8 @@
 </head>
  
 <body>
+<jsp:include page="/menu/top.jsp" flush='false' />
+
   <DIV class="title_line">
     고객센터
   </DIV>
