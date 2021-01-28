@@ -26,6 +26,7 @@
     전체 보기 
   </ASIDE>
   <ASIDE class="aside_right">
+    <A href="./create.do">공지 등록</A> | 
     <A href="javascript:location.reload();">새로고침</A>
     <!--  <span class='menu_divide' >│</span> -->
   </ASIDE> 
@@ -36,11 +37,10 @@
       <colgroup>
         <col style='width: 5%;'/>
         <col style='width: 15%;'/>
-        <col style="width: 35%;"/>
+        <col style="width: 40%;"/>
         <col style='width: 10%;'/>
         <col style='width: 15%;'/>
-        <col style='width: 10%;'/>
-        <col style='width: 5%;'/>        
+        <col style='width: 10%;'/>     
       </colgroup>
      
       <thead>  
@@ -51,7 +51,6 @@
         <TH class="th_bs">작성자</TH>
         <TH class="th_bs">작성일</TH>
         <TH class="th_bs">출력모드</TH>
-        <TH class="th_bs">기타</TH>
       </TR>
       </thead>
       
@@ -86,12 +85,7 @@
 		            <A href="./update_visible.do?noticeno=${noticeno }&visible=${noticeVO.visible }"><IMG src="./images/close.png" style='width: 26px;'></A>
 		          </c:otherwise>
 		        </c:choose>
-        </TD> 
-      
-          <TD class="td_bs">
-            <A href="./update.do?noticeno=${noticeno }"><span class="glyphicon glyphicon-pencil"></span></A>
-            <A href="./delete.do?noticeno=${noticeno }"><span class="glyphicon glyphicon-trash"></span></A>
-          </TD>             
+        </TD>          
         </TR>
       </c:forEach>
       </tbody>

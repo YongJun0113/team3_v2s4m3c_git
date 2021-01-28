@@ -38,8 +38,9 @@
     <FORM name='frm' method='POST' action='./img_create.do' class="form-horizontal"
                 enctype="multipart/form-data">
                
-      <!-- FK memberno 지정 -->
+      <!-- FK 지정 -->
       <input type='hidden' name='m_no' id='m_no' value='${param.m_no }'>
+      <input type='hidden' name='ncate_no' id='ncate_no' value='${param.ncate_no }'>
       <input type='hidden' name=noticeno id='noticeno' value="${param.noticeno}">
       
       <div class="form-group">   
@@ -52,7 +53,7 @@
       
       <div class="form-group">   
         <div class="col-md-12">
-          <input type='password' class="form-control" name='notice_pw'  value='' placeholder="패스워드" style='width: 20%;'>
+          <input type='password' class="form-control" name='notice_pw' value='' placeholder="패스워드" style='width: 20%;'>
         </div>
       </div>
       

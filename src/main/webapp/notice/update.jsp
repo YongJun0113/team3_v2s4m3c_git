@@ -49,8 +49,9 @@
   <DIV style='width: 100%;'>
     <FORM name='frm' method='POST' action='./update.do'
       class="form-horizontal form_bs">
-      <!-- FK memberno 지정 -->
+      <!-- FK 지정 -->
       <input type='hidden' name='m_no' id='m_no' value='${noticeVO.m_no }'>
+      <input type='hidden' name='ncate_no' id='ncate_no' value='${noticeVO.ncate_no }'>
 
       <input type='hidden' name='noticeno' id='noticeno' value='${noticeVO.noticeno}'>
 
@@ -98,7 +99,7 @@
       <DIV class='content_bottom_menu'>
         <button type="submit" class="btn btn-info">수정</button>
         <button type="button"
-          onclick="location.href='./list.do?categrpno=${param.noticeno}'"
+          onclick="location.href='./list.do?noticeno=${param.noticeno}'"
           class="btn btn-info">취소[목록]</button>
       </DIV>
 

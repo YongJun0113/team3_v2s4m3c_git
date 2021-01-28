@@ -49,12 +49,13 @@
              enctype="multipart/form-data" >
              
   <input type="hidden" name="m_no" value="1">
+  <input type="hidden" name="ncate_no" value="1">
   
   <div class="form-group">
      <label class="control-label col-md-2">공지사항 제목</label>
      <div class="col-md-9">
      <input type='text' name='title' value='' required="required" 
-         autofocus="autofocus" class="form-control" style='width: 50%;'>
+         autofocus="autofocus" class="form-control" style='width: 70%;'>
      </div>
   </div>
   

@@ -42,8 +42,9 @@
     <c:set var="nfile1" value="${noticeVO.nfile1 }" />
     <c:if test="${nfile1.endsWith('jpg') || nfile1.endsWith('png') || nfile1.endsWith('gif')}">
       <FORM name='frm' method='POST' action='./img_delete.do' class="form-horizontal">
-        <!-- FK memberno 지정 -->
+        <!-- FK 지정 -->
         <input type='hidden' name='m_no' id='m_no' value='${param.m_no }'>
+        <input type='hidden' name='ncate_no' id='ncate_no' value='${param.ncate_no }'>
         <input type='hidden' name=noticeno id='noticeno' value="${param.noticeno }">
 
         <IMG src="./storage/main_images/${nfile1 }" style="width: 50%; margin-bottom: 10px;">

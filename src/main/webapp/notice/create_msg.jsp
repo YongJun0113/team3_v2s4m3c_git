@@ -41,12 +41,10 @@
 						<UL>
 								<c:choose>
 										<c:when test="${cnt == 1 }">
-												<LI class='li_none'><span class='span_success'>새로운
-																공지사항을 등록했습니다.</span></LI>
+												<LI class='li_none'><span class='span_success'>새로운 공지사항을 등록했습니다.</span></LI>
 										</c:when>
 										<c:otherwise>
-												<LI class='li_none'><span class='span_fail'>새로운
-																공지사항 등록에 실패했습니다.</span></LI>
+												<LI class='li_none'><span class='span_fail'>새로운 공지사항 등록에 실패했습니다.</span></LI>
 										</c:otherwise>
 								</c:choose>
 								<LI class='li_none'><br> <c:choose>

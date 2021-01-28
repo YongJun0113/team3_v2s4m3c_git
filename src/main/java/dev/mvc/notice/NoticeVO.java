@@ -18,6 +18,8 @@ public class NoticeVO {
   
   private int m_no;
   
+  private int ncate_no;
+  
   private String title = "";
   
   private String content = "";
@@ -55,6 +57,14 @@ public class NoticeVO {
 
   public void setM_no(int m_no) {
     this.m_no = m_no;
+  }
+
+  public int getNcate_no() {
+    return ncate_no;
+  }
+
+  public void setNcate_no(int ncate_no) {
+    this.ncate_no = ncate_no;
   }
 
   public String getTitle() {
