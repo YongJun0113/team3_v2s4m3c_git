@@ -335,7 +335,7 @@
      font-family: Malgun Gothic, dotum, sans-serif;
      font-size: 12px; 
   }  
-.header{position:absolute; left:0; top:0; width:100%; height:100px; transition:all 0.5s; z-index:100;} .header:hover{background-color:#fff;} .header > h1{position:absolute; left:50px; top:20px;} .header > h1 > a{font-size:40px; color:#fff;} 
+.header{position:absolute; left:0; top:0; width:100%; height:100px; transition:all 0.5s; z-index:100;} .header:hover{background-color:#fff;} .header > h1{position:absolute; left:50px; top:10px;} .header > h1 > a{font-size:40px; color:#fff;} 
 .header:hover > h1 > a{color:#232323;} 
 .header .gnb{text-align:center;} 
 .header .gnb > ul > li{display:inline-block;} 
@@ -351,7 +351,7 @@
 .header .gnb > ul > li .sub_gnb > li{float:left; display:inline-block; text-indent:30px;} 
 .header .gnb > ul > li .sub_gnb > li + li{margin-left:30px;} 
 .header .gnb > ul > li .sub_gnb > li > a{font-size:16px; color:#fff; line-height:70px;} 
-.visual{position:relative; height:630px; background-image: url('../menu/images/topimg.png');  }
+.visual{position:relative; height:100px; background-image: url('../menu/images/topimg.png');  }
  
  
  
