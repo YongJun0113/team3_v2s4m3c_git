@@ -6,7 +6,7 @@
 <link href="${pageContext.request.contextPath}/css/top_menu.css" rel="stylesheet" type="text/css">
 
 <div class="header"> 
-<h1><a href="#">e-book</a></h1> 
+<h1><a href="${pageContext.request.contextPath}/">e-book</a></h1> 
 <div class="gnb"> <ul> 
 <li><a href="#">로그인</a> 
 <ul class="sub_gnb"> 
