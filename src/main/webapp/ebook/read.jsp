@@ -36,63 +36,55 @@
       <div class="col-md-6">
         <div id="slider" class="owl-carousel product-slider">
           <div class="item">
-            <img
-              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" />
+            <c:set var="main_img" value="${ebookVO.eb_file2 }"/>
+            <c:choose>
+                <c:when test="${main_img.endsWith('jpg') || main_img.endsWith('png') || main_img.endsWith('gif')}">
+                  <img class="card-img-top" src="./storage/main_images/${main_img }" alt="">
+                </c:when>
+                <c:otherwise>
+                  <img class="card-img-top" src="http://placehold.it/300x400" alt="">            
+                </c:otherwise>
+            </c:choose>
           </div>
-          <div class="item">
-            <img
-              src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
-          <div class="item">
-            <img
-              src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
-          <div class="item">
-            <img
-              src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
+          
+          <!-- 다중 파일 -->
+          <c:forEach var="attachfileVO" items="${attachlist }">
+            <c:set var="fname" value="${attachfileVO.fname.toLowerCase() }" />
+            <c:choose>
+              <c:when test="${fname.endsWith('jpg') || fname.endsWith('png') || fname.endsWith('gif')}">
+                <div class="item">
+                  <img src="${pageContext.request.contextPath}/ebook/attachfile/storage/${attachfileVO.fname }" />
+                </div>
+              </c:when>
+            </c:choose>
+          </c:forEach>
+          
         </div>
+        <!-- 썸네일 -->
         <div id="thumb" class="owl-carousel product-thumb">
           <div class="item">
-            <img
-              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" />
+            <c:set var="thumb" value="${ebookVO.eb_thumb }"/>
+            <c:choose>
+                <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+                  <img class="card-img-top" src="./storage/main_images/${thumb }" alt="">
+                </c:when>
+                <c:otherwise>
+                  <img class="card-img-top" src="http://placehold.it/300x400" alt="">            
+                </c:otherwise>
+            </c:choose>
           </div>
-          <div class="item">
-            <img
-              src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
-          <div class="item">
-            <img
-              src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
-          <div class="item">
-            <img
-              src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
+          
+          <!-- 다중 파일 -->
+          <c:forEach var="attachfileVO" items="${attachlist }">
+            <c:set var="thumb" value="${attachfileVO.thumb.toLowerCase() }" />
+            <c:choose>
+              <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+                <div class="item">
+                  <img src="${pageContext.request.contextPath}/ebook/attachfile/storage/${attachfileVO.thumb }" />
+                </div>
+              </c:when>
+            </c:choose>
+          </c:forEach>
         </div>
       </div>
       <div class="col-md-6">

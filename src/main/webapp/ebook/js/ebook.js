@@ -10,6 +10,7 @@ $(document).ready(function() {
       autoplay: false, 
       dots: false,
       loop: true,
+      autoHeight: true,
       responsiveRefreshRate: 200
   }).on('changed.owl.carousel', syncPosition);
   thumb
