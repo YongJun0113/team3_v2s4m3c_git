@@ -42,7 +42,8 @@
                             dev.mvc.ncate,
                             dev.mvc.notice,
                             dev.mvc.review,
-                            dev.mvc.customer"/>
+                            dev.mvc.customer,
+                            dev.mvc.cart"/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
   

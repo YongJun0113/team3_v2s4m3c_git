@@ -29,6 +29,97 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
 
+
+<!-------------------------- DA: 쇼핑카트 등록 시작---------------------------->
+<script type="text/javascript">
+    $(function(){   // 자동 실행
+      $('#btn_addCart').on('click', check_login);  // check_login 함수 호출
+      $('#btn_addCart').on('click', checkEBNO);  //  check_ebno 함수 호출
+    });
+    
+    function check_login() {  
+      var frm_cart = $('#frm_cart');
+      if ($('#user_id', frm_cart).val().length == 0 ) {  // 로그인 상태인지 검사
+        alert("로그인 후 사용 가능")
+        location.href="${pageContext.request.contextPath}/member/login.do"; // 로그인 화면 이동  
+      }
+    }  // check_login()
+
+    function checkEBNO() {
+      var frm_cart = $('#frm_cart');
+
+      if(check_login() != false) {
+        var params = $('#frm_cart').serialize();
+
+        $.ajax({
+          url: '../cart/checkEBNO.do', // spring execute
+          type: 'get',  // post
+          cache: false, // 응답 결과 임시 저장 취소
+          async: true,  // true: 비동기 통신
+          dataType: 'json', // 응답 형식: json, html, xml...
+          data: params,      // 데이터
+          success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
+            // alert(rdata);
+            
+            if (rdata.cnt > 0) {
+               var click_confirm = confirm("동일한 상품이 장바구니에 존재합니다. 장바구니로 이동하시겠습니까?");
+               if(click_confirm) {
+                  location.href="../cart/list.do";
+               } else {
+                  return false;
+               }    
+            } else {
+              add_cart();  // 카트 담기 함수 호출
+            }
+
+          },
+          error: function(request, status, error) { // callback 함수
+            var msg = 'ERROR\n';
+            msg += 'request.status: '+request.status + '\n';
+            msg += 'message: '+error;
+            console.log(msg);
+          }
+        }); // ajax        
+      }  // if
+    } // checkEBNO()
+     
+    function add_cart() {
+      var frm_cart = $('#frm_cart');
+
+      if(check_login() != false) {  // 로그인 상태인 경우 카트 담기 처리
+        var params = frm_cart.serialize();
+        // alert(params);
+        // return;
+
+        $.ajax({
+            url: "../cart/create_ajax.do", // action 대상 주소
+            type: "post",
+            cache: false,
+            async: true,
+            dataType: "json",             // 응답 형식
+            data: params,
+            success: function(rdata) {
+              // alert(rdata);
+
+              if(rdata.cnt == 1) {
+                alert("선택하신 상품을 장바구니에 담았습니다.");
+              } else {
+                alert("카트 담기 X");
+              } // if~else
+              
+            },  // function(rdata) 
+            
+            error: function(request, status, error) { // callback 함수
+              var msg = 'ERROR request.status: '+request.status + '/ ' + error;
+              console.log(msg); // Chrome에 출력
+            }  // Ajax 통신 error, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+        });  // $.ajax
+       }  // if  
+    }  // add_cart()
+    
+</script>
+<!-------------------------- 쇼핑카트 등록 끝 ---------------------------->
+
 <section class="page-section cta">
   <div class="container">
   <c:import url="/ebook/menu.do" />
@@ -113,10 +204,17 @@
                 class="won"> 원</span> <span class="line-through"></span>
             </div>
           </div>
-          <div class="product-count">
-            <a href="#" class="round-black-btn">장바구니에 담기</a>
-            <a href="#" class="round-black-btn">바로 구매</a>
-          </div>
+          
+          <!-- DA : frm_cart -->
+          <form name="frm_cart" id='frm_cart' >
+            <input type="hidden" name="user_id" id="user_id" value="${sessionScope.id}">
+            <input type="hidden" name="eb_no" id="eb_no" value="${ebookVO.eb_no}">
+              <div class="product-count">
+                <a class="round-black-btn" id="btn_addCart">장바구니에 담기</a>
+                <a href="#" class="round-black-btn">바로 구매</a>
+              </div>
+          </form>
+
         </div>
       </div>
     </div>
