@@ -75,10 +75,11 @@ public class AttachfileCont {
    * @return
    */
   @RequestMapping(value = "/adm/ebook/attachfile/create.do", method = RequestMethod.POST)
-  public ModelAndView create(HttpServletRequest request, AttachfileVO attachfileVO, int cateno) {
+  public ModelAndView create(HttpServletRequest request, AttachfileVO attachfileVO) {
     // System.out.println("--> categrpno: " + categrpno);
 
     ModelAndView mav = new ModelAndView();
+    
     // ------------------------------------------------------------------
     // 파일 전송 코드 시작
     // ------------------------------------------------------------------
@@ -88,7 +89,8 @@ public class AttachfileCont {
     long fsize = 0; // 파일 사이즈
     String thumb = ""; // Preview 이미지
     int upload_count = 0; // 정상처리된 레코드 갯수
-
+    
+    
     String upDir = Tool.getRealPath(request, "/ebook/attachfile/storage");
     // 전송 파일이 없어서도 fnamesMF 객체가 생성됨.
     List<MultipartFile> fnamesMF = attachfileVO.getFnamesMF();
@@ -115,12 +117,12 @@ public class AttachfileCont {
         upload_count = upload_count + attachfileProc.create(vo); // 파일 1건 등록 정도 dbms 저장
       }
     }
+
     // -----------------------------------------------------
     // 파일 전송 코드 종료
     // -----------------------------------------------------
 
     mav.addObject("upload_count", upload_count); // redirect parameter 적용
-    mav.addObject("cateno", cateno); // redirect parameter 적용
     mav.addObject("eb_no", attachfileVO.getEb_no()); // redirect parameter 적용
 
     mav.setViewName("redirect:/adm/ebook/attachfile/list.do?eb_no=" + eb_no); // 새로고침 방지
@@ -169,6 +171,38 @@ public class AttachfileCont {
     List<AttachfileVO> list = attachfileProc.list(); // 목록 새로 고침
     mav.addObject("list", list);
 
+    mav.setViewName("redirect:/adm/ebook/attachfile/" + rurl);
+
+    return mav;
+  }
+  
+  /**
+   * 선택한 첨부 파일 삭제
+   * 
+   * @return
+   */
+  @RequestMapping(value = "/adm/ebook/attachfile/chk_delete.do", method = RequestMethod.POST)
+  public ModelAndView chk_delete_proc(HttpServletRequest request, String chk_del_val, String rurl) {
+    ModelAndView mav = new ModelAndView();
+
+    // System.out.println( chk_del_val );
+    AttachfileVO attachfileVO = null;
+    String[] chk_val = chk_del_val.split(",");
+    
+    for ( int i = 0; i < chk_val.length; i++ ) {
+      int del_num = Integer.parseInt(chk_val[i]);
+      //System.out.println( del_num );
+      attachfileVO = attachfileProc.read(del_num);
+      
+      String upDir = Tool.getRealPath(request, "/ebook/attachfile/storage"); // 절대 경로
+      Tool.deleteFile(upDir, attachfileVO.getFupname()); // Folder에서 1건의 파일 삭제
+      Tool.deleteFile(upDir, attachfileVO.getThumb()); // 1건의 Thumb 파일 삭제
+      
+      attachfileProc.delete(del_num);
+    }
+    
+    List<AttachfileVO> list = attachfileProc.list(); // 목록 새로 고침
+    mav.addObject("list", list);
     mav.setViewName("redirect:/adm/ebook/attachfile/" + rurl);
 
     return mav;

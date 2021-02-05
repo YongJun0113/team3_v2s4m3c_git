@@ -14,7 +14,7 @@
                 enctype="multipart/form-data" class="form-horizontal">
                
       <!-- FK cateno 지정 -->
-      <input type='hidden' name='cateno' id='cateno' value="${param.cateno }">
+      <%-- <input type='hidden' name='cateno' id='cateno' value="${param.cateno }"> --%>
       <input type='hidden' name='eb_no' id='eb_no' value="${param.eb_no }">
       
       <div class="form-group">   
@@ -35,8 +35,10 @@
   </DIV>
   
   <!-- 선택 삭제 -->
-  <form id="choice_frm" class="form-horizontal">
-    <button type="button" class="btn btn-danger">선택 삭제</button>
+  <form id="choice_frm" method="post" class="form-horizontal" action="./chk_delete.do">
+    <input type="hidden" id="chk_del_val" name="chk_del_val" value="">
+    <input type="hidden" name="rurl" id="rurl" value="./list.do?eb_no=${param.eb_no }">
+    <button type="button" id="ch_del_btn" class="btn btn-danger">선택 삭제</button>
   </form>
   
   <!-- 개별 삭제 -->
@@ -59,6 +61,49 @@
         </div>
         <div class="modal-footer">
           <button type="button" id="btn_delete" data-focus="" data-content="" class="btn btn-danger" data-dismiss="modal">삭제 진행</button>
+          <button type="button" id="btn_close" data-focus="" class="btn btn-default" data-dismiss="modal" style="border: 1px solid #ccc;">취소</button>
+        </div>
+      </div>
+    </div>
+  </div> <!-- Modal 알림창 종료 -->
+  
+  <!-- Modal 알림창 시작 (선택 삭제) -->
+  <div id="modal_panel_choice" class="modal fade"  role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id='modal_title'>선택 파일 삭제</h4><!-- 제목 -->
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <div class="modal-body">
+          <p id='modal_content' class="alert alert-danger">
+                      선택한 파일을 삭제하시겠습니까? <br>파일을 삭제하면 복구할 수 없습니다.<br>
+          </p>  <!-- 내용 -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btn_choice" data-focus="" data-content="" class="btn btn-danger" data-dismiss="modal">삭제 진행</button>
+          <button type="button" id="btn_close" data-focus="" class="btn btn-default" data-dismiss="modal" style="border: 1px solid #ccc;">취소</button>
+        </div>
+      </div>
+    </div>
+  </div> <!-- Modal 알림창 종료 -->
+  
+  <!-- Modal 알림창 시작 (선택 삭제) -->
+  <div id="modal_panel_alert" class="modal fade"  role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id='modal_title'>알림</h4><!-- 제목 -->
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <div class="modal-body">
+          <p id='modal_content' class="alert alert-danger">
+                        삭제할 파일을 선택해 주세요.
+          </p>  <!-- 내용 -->
+        </div>
+        <div class="modal-footer">
           <button type="button" id="btn_close" data-focus="" class="btn btn-default" data-dismiss="modal" style="border: 1px solid #ccc;">취소</button>
         </div>
       </div>
@@ -128,6 +173,7 @@
 
   $(function() {
     $( '#btn_delete' ).on( 'click', delete_proc );
+    $( '#btn_choice' ).on( 'click', chk_delete_proc );
   });
   
   function delete_form(attachfileno) {
@@ -154,11 +200,44 @@
     frm.submit();
   }
 
+  function chk_delete_proc() {
+    //alert('삭제 진행 버튼 누름');
+    var frm = $('#choice_frm');  
+    frm.submit();
+  }
+
+  /* 전체 체크 */
   $("#chk_all").click( function () {
     $( "input:checkbox[name='chk_file_no']" ).prop( "checked", function () {
       return !$(this).prop( "checked" );
     } );
   });
+
+
+  /* 선택 삭제 */
+  $('#ch_del_btn').click( function () {
+    var chk_val = '';
+    var delchk = $("input[name=chk_file_no]:checked");
+    for ( var i = 0; i < delchk.length; i++ ) {
+      if ( i == delchk.length - 1 ) {
+        chk_val += delchk[i].value;
+      } else {
+        chk_val += delchk[i].value + ",";
+      }
+    }
+
+    if ( delchk.length > 0 ) {
+      $('#modal_panel_choice').modal();
+      $('#chk_del_val').val( chk_val );
+    } else {
+      $('#modal_panel_alert').modal();
+    }
+    
+
+    // alert(chk_val);
+  } );
+
+  
 </script>
 
 <jsp:include page="/adm/menu/bottom.jsp" flush='false' />
