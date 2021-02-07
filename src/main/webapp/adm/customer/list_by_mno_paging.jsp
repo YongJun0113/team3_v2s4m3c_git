@@ -10,7 +10,7 @@
 
 <input type="hidden" name="m_no" value="${param.m_no}">
   <DIV class="title_line" style="margin-left: 3px;">
-   <A href='./list_all.do?nowPage=1'>1:1 문의</A> > mno:「${param.m_no}」님 문의 목록
+   <A href='./list_all.do?nowPage=1'> 전체 문의</A> > 회원번호 : ${param.m_no}번 목록
   </DIV>
   
 <!--   <ASIDE class="aside_left">
@@ -65,7 +65,7 @@
                 <c:choose>
                   <c:when test="${cs_thumb1.endsWith('jpg') || cs_thumb1.endsWith('png') || cs_thumb1.endsWith('gif')}">
                     <a href="./read.do?cs_no=${cs_no}&m_no=${param.m_no}&m_id=${param.m_id}">
-                      <IMG src="./storage/main_images/${cs_thumb1}" style="width: 100px; height:110px;">
+                      <IMG src="../../customer/storage/main_images/${cs_thumb1}" style="width: 100px; height:110px;">
                     </a>
                   </c:when>
                   <c:otherwise> <!-- 이미지가 아닌 일반 파일 -->

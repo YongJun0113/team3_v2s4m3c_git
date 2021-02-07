@@ -54,6 +54,9 @@
   <!-- 데이터아키텍트  -->
   <context:component-scan base-package="dev.mvc.customer"/>  
   <context:component-scan base-package="dev.mvc.cart"/>  
+  <context:component-scan base-package="dev.mvc.cs_attachfile"/>  
+  <context:component-scan base-package="dev.mvc.survey"/>
+  <context:component-scan base-package="dev.mvc.survey_item"/>
   
   
   <!-- 관리자 목록 -->

@@ -89,7 +89,28 @@
           <span>EBook 전체 목록</span>
         </a>
       </li>
-
+      
+      <!-- DA: 추가 시작-->
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/adm/customer/list_all.do">
+          <i class="far fa-comments"></i>
+          <span>고객센터</span>
+        </a>
+      </li>  
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#survey" aria-expanded="true" aria-controls="survey">
+          <i class="far fa-list-alt"></i>
+          <span>설문조사</span>
+        </a>
+        <div id="survey" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">설문 조사</h6>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/adm/survey/list.do">설문조사 리스트</a>
+          </div>
+        </div>
+      </li>
+      <!-- DA: 추가 끝-->
+      
       <!-- Divider -->
       <hr class="sidebar-divider">
 

@@ -19,7 +19,7 @@
  
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
-
+  <div  style="margin: 4.6% auto;"></div> 
   <DIV class="title_line">
     고객센터
   </DIV>

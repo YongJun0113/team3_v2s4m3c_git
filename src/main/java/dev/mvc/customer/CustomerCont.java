@@ -120,7 +120,6 @@ public class CustomerCont {
     return mav;
   }
   
-  
   /**
    * 전체 목록 (관리자만 접근 가능)
    * @return
@@ -131,17 +130,21 @@ public class CustomerCont {
                                     HttpSession session) { 
     ModelAndView mav = new ModelAndView();
     
+    /*
     if (adminProc.isAdmin(session) == true) {
       List<CustomerVO> list = this.customerProc.list_all();
-      
       mav.addObject("list", list);
       mav.addObject("nowPage", nowPage);
-      
       mav.setViewName("/adm/customer/list_all");
     } else {
       mav.setViewName("redirect:/adm/admin/login_need.jsp"); // /webapp/adm/admin/login_need.jsp    
     }
-
+   */
+    List<CustomerVO> list = this.customerProc.list_all();
+    mav.addObject("list", list);
+    mav.addObject("nowPage", nowPage);
+    mav.setViewName("/adm/customer/list_all");
+    
     return mav;
   }
   
@@ -151,7 +154,7 @@ public class CustomerCont {
    */
   @RequestMapping(value="/customer/list_all.do", method = RequestMethod.GET)
   public ModelAndView list(CustomerVO customerVO,
-      @RequestParam(value="nowPage", defaultValue="1") int nowPage) { 
+                                    @RequestParam(value="nowPage", defaultValue="1") int nowPage) { 
     ModelAndView mav = new ModelAndView();
     
     List<CustomerVO> list = this.customerProc.list_all();
@@ -184,8 +187,8 @@ public class CustomerCont {
     map.put("m_no", m_no);  // #{m_no}
     map.put("nowPage", nowPage);  //  페이지에 출력할 레코드 범위(갯수) 산출  
     
+    /*
     if (adminProc.isAdmin(session) == true ) {
-      
       // 페이징 + 메인 이미지 목록
       List<CustomerVO> list = this.customerProc.list_by_mno_paging(map);
       mav.addObject("list", list);
@@ -202,6 +205,20 @@ public class CustomerCont {
     } else {
       mav.setViewName("redirect:/adm/admin/login_need.jsp"); // /webapp/adm/admin/login_need.jsp    
     }
+    */
+    // 페이징 + 메인 이미지 목록
+    List<CustomerVO> list = this.customerProc.list_by_mno_paging(map);
+    mav.addObject("list", list);
+    
+    // 검색된 레코드 갯수
+    int search_count = this.customerProc.search_count(m_no);
+    mav.addObject("search_count", search_count);
+    
+    String paging = this.customerProc.pagingBox("list_by_mno_paging.do", m_no, search_count, nowPage);
+    mav.addObject("paging", paging);
+    mav.addObject("nowPage", nowPage);
+    
+    mav.setViewName("/adm/customer/list_by_mno_paging");  //  /webapp/adm/customer/list_by_mno_paging.jsp
     
     return mav;
   }
@@ -214,15 +231,20 @@ public class CustomerCont {
   @RequestMapping(value="/adm/customer/list_join.do", method = RequestMethod.GET)
   public ModelAndView list_join(HttpSession session) {
     ModelAndView mav = new ModelAndView();
+    /*
     if (adminProc.isAdmin(session) == true) {
-      mav.setViewName("/adm/customer/list_join");
-      
       List<Member_Customer_join> list = this.customerProc.list_join();
       mav.addObject("list", list);
+      mav.setViewName("/adm/customer/list_join");
     } else {
       mav.setViewName("redirect:/adm/admin/login_need.jsp"); // /webapp/adm/admin/login_need.jsp    
     }
-  
+    */
+    
+    List<Member_Customer_join> list = this.customerProc.list_join();
+    mav.addObject("list", list);
+    mav.setViewName("/adm/customer/list_join");
+    
     return mav;
   }
   
@@ -234,20 +256,25 @@ public class CustomerCont {
   public ModelAndView list_by_mno(int m_no, CustomerVO customerVO, HttpSession session) { 
     ModelAndView mav = new ModelAndView();
     
+    /*
     if (adminProc.isAdmin(session) == true) {
-      mav.setViewName("/adm/customer/list_by_mno");
       List<CustomerVO> list = this.customerProc.list_by_mno(m_no);
       mav.addObject("list", list);
+      mav.setViewName("/adm/customer/list_by_mno");
     } else {
       mav.setViewName("redirect:/adm/admin/login_need.jsp"); // /webapp/adm/admin/login_need.jsp    
     }
+    */
+    List<CustomerVO> list = this.customerProc.list_by_mno(m_no);
+    mav.addObject("list", list);
+    mav.setViewName("/adm/customer/list_by_mno");
     
     return mav;
   }
   
   
   /**
-   * 회원이 쓴 글 조회(관리자) 
+   * 회원이 쓴 글 조회
    * @return
    */
   @RequestMapping(value="/adm/customer/read.do", method=RequestMethod.GET)
@@ -264,7 +291,7 @@ public class CustomerCont {
   }
   
   /**
-   * 조회
+   * 나의 문의 조회(회원용) 
    * @return
    */
   @RequestMapping(value="/customer/read.do", method=RequestMethod.GET)
@@ -308,22 +335,22 @@ public class CustomerCont {
   public ModelAndView update(int cs_no) {
     ModelAndView mav = new ModelAndView();
     
-    Member_Customer_join customerVO = this.customerProc.read(cs_no);
-    mav.addObject("customerVO", customerVO);
+    Member_Customer_join member_Customer_join = this.customerProc.read(cs_no);
+    mav.addObject("member_Customer_join", member_Customer_join);
 
-    if(customerVO.getCs_type().equals("A01")) {
-      customerVO.setCs_type("상품문의");
-    } else if(customerVO.getCs_type().equals("A02")) {
-      customerVO.setCs_type("결제장애");
-    } else if(customerVO.getCs_type().equals("A03")) {
-      customerVO.setCs_type("환불");
-    } else if(customerVO.getCs_type().equals("A04")) {
-      customerVO.setCs_type("개선사항");
-    } else if(customerVO.getCs_type().equals("A99")) {
-      customerVO.setCs_type("기타");
+    if(member_Customer_join.getCs_type().equals("A01")) {
+      member_Customer_join.setCs_type("상품문의");
+    } else if(member_Customer_join.getCs_type().equals("A02")) {
+      member_Customer_join.setCs_type("결제장애");
+    } else if(member_Customer_join.getCs_type().equals("A03")) {
+      member_Customer_join.setCs_type("환불");
+    } else if(member_Customer_join.getCs_type().equals("A04")) {
+      member_Customer_join.setCs_type("개선사항");
+    } else if(member_Customer_join.getCs_type().equals("A99")) {
+      member_Customer_join.setCs_type("기타");
     }
     
-    mav.addObject("cs_type", customerVO.getCs_type());  //  set fixed cs_type value
+    mav.addObject("cs_type", member_Customer_join.getCs_type());  //  set fixed cs_type value
        
     mav.setViewName("/adm/customer/update");
 
@@ -399,7 +426,7 @@ public class CustomerCont {
   }
   
   /**
-   * 수정 처리, 첨부파일 수정은 X 
+   * 수정 처리, 첨부파일 X 
    * @param member_Customer_join
    * @return
    */
@@ -434,7 +461,7 @@ public class CustomerCont {
   }
   
   /**
-   * 특정 회원의 모든 문의 list (로그인한 관리자)
+   * 특정 회원의 모든 문의 목록
    * @return
    */
   @RequestMapping(value="/adm/customer/list_mno_inquiry.do", method=RequestMethod.GET)
@@ -582,6 +609,7 @@ public class CustomerCont {
 
     return mav;
   }
+  
   
   /**
    * 삭제 폼(관리자용)

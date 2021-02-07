@@ -43,7 +43,10 @@
                             dev.mvc.notice,
                             dev.mvc.review,
                             dev.mvc.customer,
-                            dev.mvc.cart"/>
+                            dev.mvc.cart,
+                            dev.mvc.cs_attachfile,
+                            dev.mvc.survey,
+                            dev.mvc.survey_item"/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
   

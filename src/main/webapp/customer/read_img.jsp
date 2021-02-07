@@ -31,7 +31,7 @@
   <DIV class="title_line">
     <A href="./list_all.do">모든 문의 내역</A> > 조회
     <div style="float: right; margin-right: 8px;">
-    <A href="./create.do?m_no=${param.m_no}&m_id=${param.m_id}">문의하기</A>
+    <A href="./create.do">문의하기</A>
     </div>
   </DIV>
   
@@ -54,14 +54,14 @@
     <div class="col-md-3" style="text-align: center; margin-left: 45px;  padding: 6px 7px;">
       <c:choose>
         <c:when test="${cs_file1.trim().length() > 0 }"> <!-- 메인 이미지가 있을 때  -->
-          <A href='./img_update.do?cs_no=${cs_no}&m_no=${param.m_no}&m_id=${param.m_id}'>첨부파일 변경/삭제</A>      <!--  출력 -->
+          <A href='./img_update.do?cs_no=${cs_no}'>이미지 변경/삭제</A>      <!--  출력 -->
         </c:when>
         <c:otherwise>                                                    <!-- 메인 이미지가 없을 때 -->
-          <A href='./img_create.do?cs_no=${cs_no}&m_no=${param.m_no}&m_id=${param.m_id}'>첨부파일 등록</A>     
+          <A href='./img_create.do?cs_no=${cs_no}'>이미지 등록</A>     
         </c:otherwise>
       </c:choose>
       <div style="border-bottom: solid 1px #d8d8d8;;"></div>
-      <A href='../attachfile/create.do?cs_no=${cs_no}&m_no=${param.m_no}&m_id=${param.m_id}'>첨부파일 추가</A>
+      <A href='../cs_attachfile/create.do?cs_no=${cs_no}'>파일 추가</A>
       <span class='menu_divide' > | </span>
       <A href="javascript:location.reload();">새로고침</A>
    </div>
