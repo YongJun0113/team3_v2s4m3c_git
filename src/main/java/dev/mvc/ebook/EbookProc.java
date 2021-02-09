@@ -35,6 +35,13 @@ public class EbookProc implements EbookProcInter {
   }
   
   @Override
+  public List<EbookVO> list_ebno_desc_latest() {
+    List<EbookVO> list = this.ebookDAO.list_ebno_desc_latest();
+    
+    return list;
+  }
+  
+  @Override
   public List<EbookVO> list_ebno_desc_paging(HashMap<String, Object> map) {
     /* 
       페이지에서 출력할 시작 레코드 번호 계산 기준값, nowPage는 1부터 시작
@@ -221,6 +228,8 @@ public class EbookProc implements EbookProcInter {
      
     return str.toString(); 
   }
+
+  
 
 
 }

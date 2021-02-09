@@ -49,6 +49,17 @@ public class EbookCont {
   public EbookCont() {
     System.out.println( "--> EbookCont created." );
   }
+  
+  
+  @RequestMapping(value = { "/", "/index.do" }, method=RequestMethod.GET)
+  public ModelAndView latest() {
+    ModelAndView mav = new ModelAndView();
+    List<EbookVO> list = this.ebookProc.list_ebno_desc_latest();
+    
+    mav.addObject("list", list);
+    mav.setViewName("index");
+    return mav;
+  }
 
   /**
    * ÀÌºÏ µî·Ï Æû

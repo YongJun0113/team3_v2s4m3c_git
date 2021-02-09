@@ -351,7 +351,7 @@
 .header .gnb > ul > li .sub_gnb > li{float:left; display:inline-block; text-indent:30px;} 
 .header .gnb > ul > li .sub_gnb > li + li{margin-left:30px;} 
 .header .gnb > ul > li .sub_gnb > li > a{font-size:16px; color:#fff; line-height:70px;} 
-.visual{position:relative; height:100px; background-image: url('../menu/images/topimg.png');  }
+.visual{position:relative; height:200px; background-image: url('../menu/images/topimg.png');  }
  
  
  
