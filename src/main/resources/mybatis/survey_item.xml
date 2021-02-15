@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!--설문별 항목 리스트 list_itemno_asc  -->
   <select id="list_itemno_asc" resultType="SurveyitemVO" >
-    SELECT survey_no, item_no, item_title, seqno
+    SELECT survey_no, item_no, item_title, seqno, rcnt
     FROM survey_item 
     WHERE survey_no=#{survey_no}
     ORDER BY item_no ASC
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!--설문별 항목 리스트 list_seqno_asc  -->
   <select id="list_seqno_asc" resultType="SurveyitemVO" >
-    SELECT survey_no, item_no, item_title, seqno
+    SELECT survey_no, item_no, item_title, seqno, rcnt
     FROM survey_item 
     WHERE survey_no=#{survey_no}
     ORDER BY seqno ASC
@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
   <!-- 조회  --> 
   <select id="read"  resultType="SurveyitemVO">
-    SELECT survey_no, item_no, item_title, seqno
+    SELECT survey_no, item_no, item_title, seqno, rcnt
     FROM survey_item 
     WHERE item_no=#{item_no}
   </select> 
@@ -58,8 +58,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE item_no=#{item_no}
   </delete>
  
- 
- 
+  <!--  집계 수 증가  --> 
+  <update id="update_rcnt_up"  parameterType="int">
+    UPDATE survey_item 
+    SET rcnt = rcnt + 1 
+    WHERE item_no=#{item_no}
+  </update>
  
  
  

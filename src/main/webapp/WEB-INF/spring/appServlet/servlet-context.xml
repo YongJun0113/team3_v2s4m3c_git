@@ -57,6 +57,7 @@
   <context:component-scan base-package="dev.mvc.cs_attachfile"/>  
   <context:component-scan base-package="dev.mvc.survey"/>
   <context:component-scan base-package="dev.mvc.survey_item"/>
+  <context:component-scan base-package="dev.mvc.survey_chart"/>
   
   
   <!-- 관리자 목록 -->

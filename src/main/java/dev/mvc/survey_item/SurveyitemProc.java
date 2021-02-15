@@ -51,10 +51,17 @@ public class SurveyitemProc implements SurveyitemProcInter {
     return cnt;
   }
 
-
+  // 삭제 처리
   @Override
   public int delete(int item_no) {
     int cnt = this.surveyitemDAO.delete(item_no);
+    return cnt;
+  }
+
+  // 집계 수 증가
+  @Override
+  public int update_rcnt_up(int item_no) {
+    int cnt = this.surveyitemDAO.update_rcnt_up(item_no);
     return cnt;
   }
   

@@ -22,7 +22,8 @@ public interface SurveyitemProcInter {
   // 삭제
   public int delete(int item_no);
   
-  
+  // 집계 수 증가
+  public int update_rcnt_up(int item_no);
   
   
   

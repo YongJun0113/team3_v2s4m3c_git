@@ -7,16 +7,18 @@ package dev.mvc.survey_item;
       item_no                         NUMBER(10)     NOT NULL    PRIMARY KEY,
       item_title                        VARCHAR2(200)    NOT NULL,
       seqno                             NUMBER(10)     NOT NULL,
+      rcnt                                NUMBER(10)   DEFAULT 0  NOT NULL,
     FOREIGN KEY (survey_no) REFERENCES survey (survey_no)
   );
 
 */
 public class SurveyitemVO {
 
-    private int item_no;
-    private int survey_no;
-    private int seqno;
-    private String item_title="";
+    private int item_no;            // 항목 번호
+    private int survey_no;          // 설문 번호
+    private int seqno;               // 순서
+    private String item_title="";   // 항목 이름
+    private int rcnt;                  // 항목 선택 횟수
     
     public int getItem_no() {
       return item_no;
@@ -42,8 +44,23 @@ public class SurveyitemVO {
     public void setSeqno(int seqno) {
       this.seqno = seqno;
     }
+    public int getRcnt() {
+      return rcnt;
+    }
+    public void setRcnt(int rcnt) {
+      this.rcnt = rcnt;
+    }
     
   
   
   
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

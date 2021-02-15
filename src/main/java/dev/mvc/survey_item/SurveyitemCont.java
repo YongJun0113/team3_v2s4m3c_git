@@ -163,11 +163,46 @@ public class SurveyitemCont {
     return mav;
   }
   
+  /**
+   * 목록 http://localhost:9090/team3_testgit/surveyitem/list.do
+   * @param survey_no
+   * @return
+   */
+  @RequestMapping(value = "/surveyitem/list.do", method = RequestMethod.GET)
+  public ModelAndView list_itemno_asc(int survey_no) {
+    ModelAndView mav = new ModelAndView();
+    
+    SurveyVO surveyVO = this.surveyProc.read(survey_no);  //  SurveyProc 접근
+    mav.addObject("survey_title", surveyVO.getTitle());
+    
+    // List<SurveyitemVO> list = this.surveyitemProc.list_seqno_asc(survey_no);
+    List<SurveyitemVO> list = this.surveyitemProc.list_itemno_asc(survey_no);
+    mav.addObject("list", list);
+    
+    mav.setViewName("/surveyitem/list");
+    
+    return mav;
+  }
   
-  
-  
-  
-  
+  /**
+   * 집계 수 증가
+   * @param survey_no
+   * @param item_no
+   * @return
+   */
+  @RequestMapping(value="/surveyitem/update_rcnt_up.do",  method=RequestMethod.POST )
+    public ModelAndView update_rcnt_up(int survey_no, int item_no) {
+      ModelAndView mav = new ModelAndView();
+
+       int cnt = this.surveyitemProc.update_rcnt_up(item_no);  //  증가 처리
+       
+       mav.addObject("cnt", cnt);
+       mav.addObject("survey_no", survey_no);
+       mav.addObject("url", "update_rcnt_up_msg");
+       mav.setViewName("redirect:/surveyitem/msg.do");
+        
+      return mav;
+  }
   
   
   
@@ -194,6 +229,17 @@ public class SurveyitemCont {
   public ModelAndView msgtoA(String url){
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/adm/surveyitem/" + url); // forward
+    return mav; // forward
+  }
+  
+  /**
+   * 회원 페이지 - 새로고침을 방지하는 메시지 출력
+   * @return
+   */
+  @RequestMapping(value="/surveyitem/msg.do", method=RequestMethod.GET)
+  public ModelAndView msg(String url){
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/surveyitem/" + url); // forward
     return mav; // forward
   }
 
