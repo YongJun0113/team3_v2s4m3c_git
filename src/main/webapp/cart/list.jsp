@@ -29,23 +29,159 @@
 
 <script>
      
-    $(function(){  // 자동 실행
-        $("#total_sum").html("0 원");  // 초기값 0 원
+    $(function(){ 
+      $('#check_all').on('click', select_all_checkbox);                      //  체크박스 전체 선택/전체 해제
+      $(".cart_no").on('click', dismiss_checkall_checkbox);               //  전체 체크박스 해제
+      $("#total_sum").html("0 원");  // 초기값 0 원
+      $('#btn_select_delete').on('click', delete_selected_list_proc);     // 선택된 레코드 삭제
+      $('.btn_delete_this').on('click', delete_one_record_proc);         //  레코드 하나 삭제
+      $('#order_reqest').on('click', create_ajax);                           //  주문 등록
     }); 
     
      /* 체크된 체크박스 값만 더하여 누적합계 산출 */
      function price_sum() {
        var sum=0;
-       var cnt = $(".ck_box").length;
+       var cnt = $(".cart_no").length;
 
        for(var i = 0; i < cnt; i++) {
-         if($(".ck_box")[i].checked == true  ) {
-             sum += parseInt($(".ck_box")[i].value);
+         if($(".cart_no")[i].checked == true  ) {
+             sum += parseInt($(".cart_no")[i].value);
          } 
        } 
        $("#total_sum").html(sum+" 원");
     }
+     
+    /*  선택 삭제   */
+    function delete_selected_list_proc(){
+      var double_check = confirm("선택하신 상품이 삭제됩니다.");
+      if(double_check) {
+           var cartno_list = [];
+           
+           $("input[name='cart_no']:checked").each(function() {
+               cartno_list.push($(this).attr("data-cartno"));  
+            }); // 체크된 항목을 배열에 저장
 
+            var param = { 
+                "cartno_list" : cartno_list
+            };  // 카트번호 배열 저장
+            
+           $.ajax({
+               url: "./delete_ajax.do",
+               dataType: "json",
+               type: "post",
+               data: param,
+               success: function(rdata){
+                    if(rdata.result !=  0) {
+                      location.href="./list.do";
+                    } else {
+                      alert("ajax error!");
+                    }
+                  }, 
+                  error: function(request, status, error) {
+                    var msg = 'ERROR request.status: '+request.status + '/ ' + error;
+                    console.log(msg); // Chrome console 출력
+                  }  // Ajax 통신 error, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+
+            });  //   ajax 호출
+      } // if end 
+    
+    } // end
+
+
+   /*     체크박스 전체 선택/전체 해제      */
+   function select_all_checkbox() {
+      if ($('#check_all').prop("checked")) { 
+         $(".cart_no").prop("checked", true);
+         price_sum();  
+      } else {
+        $(".cart_no").prop("checked", false);
+        price_sum();
+      }       
+    }
+
+     /*   전체 선택 체크박스 체크 해제  */
+    function dismiss_checkall_checkbox() {
+      $("#check_all").prop("checked", false);  
+      price_sum();
+    }
+
+     /*  레코드 하나 삭제   */
+    function delete_one_record_proc(){
+       var double_check = confirm("선택된 상품을 삭제하시겠습니까?");
+       if(double_check) {
+            var cartno_list = [];
+            cartno_list.push($(this).attr("data-cartno"));  
+  
+             var param = { 
+                 "cartno_list" : cartno_list
+             };  // 카트번호 배열 저장
+             
+            $.ajax({
+                url: "./delete_ajax.do",
+                dataType: "json",
+                type: "post",
+                data: param,
+                success: function(rdata){
+                     if(rdata.result != 0) {
+                       location.href="./list.do";
+                     } else {
+                       alert("삭제 X");
+                     }
+                   }, 
+                   error: function(request, status, error) {
+                     var msg = 'ERROR request.status: '+request.status + '/ ' + error;
+                     console.log(msg); // Chrome console 출력
+                   }  // Ajax 통신 error, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+  
+             });  //   ajax 호출
+       } 
+    }  // end
+    
+
+    // 주문 등록
+    function create_ajax() {
+      var double_check = confirm("선택된 상품을 주문 하시겠습니까?");
+      if(double_check) {
+         var ebno_list = [];
+         var cartno_list = [];
+         $("input[name='cart_no']:checked").each(function() {
+           ebno_list.push($(this).attr("data-ebno"));  
+           cartno_list.push($(this).attr("data-cartno"));  
+          }); 
+          var payway = $("select[name='payway']").val();
+          
+          var params = { 
+              "ebno_list" : ebno_list,
+              "payway"  : payway,
+              "cartno_list" : cartno_list
+          }; 
+          // alert(params);
+          
+         $.ajax({
+             url: "../orderreq/create_ajax.do",
+             dataType: "json",
+             type: "post",
+             async: false,
+             data: params,
+             success: function(rdata){
+                if(rdata.cnt != null) {
+                  var clickok = alert("요청이 완료되었습니다.");
+                  if(clickcok) {
+                    alert(rdata.cnt);
+                  }
+                  // location.href ="../orderreq/list.do?user_id="+${sessionScope.id};
+                } else {
+                  alert("ajax error!");
+                }
+              }, 
+              error: function(request, status, error) {
+                var msg = 'ERROR request.status: '+request.status + '/ ' + error;
+                console.log(msg); // Chrome console 출력
+              }  // Ajax 통신 error, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+
+          });  //   ajax 호출
+      } // if end 
+    }  // create_ajax()
     
 
 </script>
@@ -212,7 +348,17 @@
       <TR style="height: 100px; font-weight: bolder; font-size: 1.4em;">
         <TD class="td_bs"  rowspan="2">결제 합계</TD>
         <TD class="td_bs"  rowspan="2" colspan="3" id="total_sum"></TD>        
-      </TR>                  
+        <TD class="td_bs"  rowspan="2" colspan="2">
+          <select name='payway' style="background-color: #orange;">
+          <c:forEach var="order_reqest" items="${payway_list}" varStatus="info">
+              <option value="${order_reqest.code }" >${order_reqest.payway }</option>
+          </c:forEach>
+          </select>              
+          <button type="submit" class="btn_send" id="order_reqest"  style="width: 50%; padding:8px 12px; 
+                     background-color: #0099cc; color: #fff;">주문 요청
+          </button>
+        </TD>      
+      </TR>                        
       </tbody>
     </TABLE>
   </div>

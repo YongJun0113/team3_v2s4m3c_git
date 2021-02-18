@@ -52,7 +52,7 @@
 <li><a href="#">내 페이지</a> 
 <ul class="sub_gnb">
   <li>
-    <A class='top_menu_link'  href='${pageContext.request.contextPath}/memberph/list.do'>주문 내역</A> <span class='top_menu1'> | </span>
+    <A class='top_menu_link'  href='${pageContext.request.contextPath}/orderreq/list.do'>주문요청 리스트</A> <span class='top_menu1'> | </span>
   </li>
   <li> 
     <A class='top_menu_link'  href='${pageContext.request.contextPath}/review/list.do'>리뷰 </A> <span class='top_menu1'> | </span>

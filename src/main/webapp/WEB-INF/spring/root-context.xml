@@ -47,7 +47,8 @@
                             dev.mvc.cs_attachfile,
                             dev.mvc.survey,
                             dev.mvc.survey_item,
-                            dev.mvc.survey_chart"/>
+                            dev.mvc.survey_chart,
+                            dev.mvc.order_req"/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
   
