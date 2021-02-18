@@ -98,6 +98,12 @@
         </a>
       </li>  
       <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/adm/ordererq/list_all.do">
+          <i class="far fa-comments"></i>
+          <span>주문요청 리스트</span>
+        </a>
+      </li>  
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#survey" aria-expanded="true" aria-controls="survey">
           <i class="far fa-list-alt"></i>
           <span>설문조사</span>
