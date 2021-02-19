@@ -57,15 +57,19 @@
   <li> 
     <A class='top_menu_link'  href='${pageContext.request.contextPath}/review/list.do'>리뷰 </A> <span class='top_menu1'> | </span>
   </li>
-  <li>
-    <A class='top_menu_link'  href='${pageContext.request.contextPath}/notice/list.do'>공지사항</A> <span class='top_menu1'></span>
-  </li>
 </ul> 
 </li> 
 <li><a href="#">설문참여</a> 
 <ul class="sub_gnb">
   <li> 
     <A class='top_menu_link'  href='${pageContext.request.contextPath}/survey/list.do'>온라인 설문조사</A><span class='top_menu_sep'>&nbsp;</span>
+  </li>
+</ul> 
+</li> 
+<li><a href="#">공지사항</a> 
+<ul class="sub_gnb">
+  <li> 
+    <A class='top_menu_link'  href='${pageContext.request.contextPath}/notice/list.do'>공지사항</A><span class='top_menu_sep'>&nbsp;</span>
   </li>
 </ul> 
 </li> 
