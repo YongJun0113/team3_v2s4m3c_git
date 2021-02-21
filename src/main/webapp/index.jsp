@@ -52,7 +52,7 @@
                 <c:set var="thumb" value="${ebookVO.eb_thumb }"/>
                 <c:choose>
                     <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-                      <a href="./ebook/read.do?eb_no=${ebookVO.eb_no }"><img class="card-img-top" src="./storage/main_images/${thumb }" alt=""></a>
+                      <a href="./ebook/read.do?eb_no=${ebookVO.eb_no }"><img class="card-img-top" src="./ebook/storage/main_images/${thumb }" alt=""></a>
                     </c:when>
                     <c:otherwise>
                       <a><img class="card-img-top" src="http://placehold.it/300x400" alt=""></a>            
@@ -91,4 +91,3 @@
 </body>
 
 </html>
-
