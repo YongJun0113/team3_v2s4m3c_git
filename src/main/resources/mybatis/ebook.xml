@@ -50,9 +50,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 메인 최근 업로드 도서 목록 -->  
   <select id="list_ebno_desc_latest" resultType="EbookVO">
-    SELECT eb_no, eb_title, eb_author, eb_publisher, eb_pdate, eb_price, eb_saletot, eb_page, rdate
+    SELECT eb_no, eb_title, eb_author, eb_publisher, eb_pdate, eb_price, eb_saletot, eb_page, eb_thumb, rdate
     FROM (
-        SELECT eb_no, eb_title, eb_author, eb_publisher, eb_pdate, eb_price, eb_saletot, eb_page, rdate
+        SELECT eb_no, eb_title, eb_author, eb_publisher, eb_pdate, eb_price, eb_saletot, eb_page, eb_thumb, rdate
         FROM ebook
         ORDER BY rdate DESC
     )
