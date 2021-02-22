@@ -17,6 +17,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY reply_no DESC
   </select>
   
+  <select id="list_member_join" resultType="ReplyMemberVO">
+    SELECT m.id,
+          r.reply_no, r.review_no, r.m_no, r.reply_cont, r.reply_pw, r.reply_date
+    FROM member m,  reply r
+    WHERE m.m_no = r.m_no
+    ORDER BY r.reply_no DESC
+  </select>
+  
+  <select id="read" resultType="ReplyVO" parameterType="int">
+    SELECT reply_no, review_no, m_no, reply_cont, reply_pw, reply_date
+    FROM reply
+    WHERE reply_no=#{reply_no}
+  </select>  
+  
   <delete id="delete" parameterType="int">
     DELETE FROM reply
     WHERE reply_no=#{reply_no}
@@ -24,9 +38,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </delete>
   
  
-  
-  
-
 </mapper>
 
 

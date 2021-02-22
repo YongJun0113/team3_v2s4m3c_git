@@ -22,14 +22,21 @@
   <jsp:include page="/menu/top.jsp" flush='false' />
   
  <FORM name='frm' method='POST' action='./create.do' class="form-horizontal">
-  <input type="hidden" name="review_no" value="1">
+  <input type="hidden" name="review_no" value="2">
   <input type="hidden" name="m_no" value="1">
   
   <div class="form-group">
-     <label class="control-label col-md-1">댓글</label>
-     <div class="col-md-11">
+     <label class="control-label col-md-3">댓글</label>
+     <div class="col-md-9">
       <textarea id="test" name="reply_cont" rows="3" cols="70"></textarea>
-
+     </div>
+  </div>
+  
+  <div class="form-group">
+     <label class="control-label col-md-3">패스워드</label>
+     <div class="col-md-9">
+     <input type='text' name='reply_pw' value='' required="required" 
+         autofocus="autofocus" class="form-control" style='width: 50%;'>
      </div>
   </div>
 

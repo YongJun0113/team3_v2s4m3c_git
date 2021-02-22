@@ -2,6 +2,8 @@ package dev.mvc.reply;
 
 import java.util.List;
 
+import dev.mvc.ncate.NcateVO;
+
 public interface ReplyDAOInter {
   
   /**
@@ -16,6 +18,15 @@ public interface ReplyDAOInter {
    * @return
    */
   public List<ReplyVO> list_replyno_desc();
+  
+  public List<ReplyMemberVO> list_member_join();
+  
+  /**
+   * Á¶È¸, ¼öÁ¤Æû
+   * @param reply_no 
+   * @return
+   */
+  public ReplyVO read(int reply_no);
  
   /**
    * ´ñ±Û »èÁ¦

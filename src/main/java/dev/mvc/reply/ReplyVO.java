@@ -36,7 +36,6 @@ public class ReplyVO {
     this.review_no = review_no;
   }
 
- 
   public int getM_no() {
     return m_no;
   }
