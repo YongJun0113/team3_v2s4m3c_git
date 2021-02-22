@@ -5,14 +5,15 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import dev.mvc.notice.NoticeProcInter;
 
 @Controller
 public class NcateCont {
@@ -21,10 +22,6 @@ public class NcateCont {
   @Qualifier("dev.mvc.ncate.NcateProc")
   private NcateProcInter ncateProc;
   
-  @Autowired
-  @Qualifier("dev.mvc.notice.NoticeProc")
-  private NoticeProcInter noticeProc;
-
   public NcateCont() {
     System.out.println("--> NcateCont created.");
   }
@@ -36,7 +33,6 @@ public class NcateCont {
 
     return mav;
   }
-
   
   @RequestMapping(value = "/ncate/create.do", method = RequestMethod.POST)
   public ModelAndView create(NcateVO ncateVO) {
@@ -49,14 +45,40 @@ public class NcateCont {
     return mav;
   }
   
-  
+  /**
+   * Ajax 扁馆 殿废 贸府
+   * 
+   * @return
+   */
+  @ResponseBody
+  @RequestMapping(value = "/ncate/create_ajax.do", method = RequestMethod.POST,
+                  produces = "text/plain;charset=UTF-8")
+  public String create_ajax(NcateVO ncateVO) {
+    try {
+      Thread.sleep(1500);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    int ncate_cnt = this.ncateProc.create(ncateVO);
+    
+    JSONObject json = new JSONObject();
+    json.put("ncate_cnt", ncate_cnt);
+
+    return json.toString();
+  }
+
+  /**
+   * 格废
+   * @return
+   */
   @RequestMapping(value = "/ncate/list_all.do", method = RequestMethod.GET)
   public ModelAndView list_all() {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/ncate/list_all"); 
 
     List<NcateVO> list = this.ncateProc.list_nseqno_asc();
     mav.addObject("list", list);
+    mav.setViewName("/ncate/list_ajax");
 
     return mav;
   }
@@ -80,7 +102,6 @@ public class NcateCont {
     return mav; 
   }
   
-  
   @RequestMapping(value = "/ncate/update.do", method = RequestMethod.POST)
   public ModelAndView update(NcateVO ncateVO) {
     ModelAndView mav = new ModelAndView();
@@ -91,6 +112,52 @@ public class NcateCont {
     mav.setViewName("/ncate/update_msg"); 
 
     return mav;
+  }
+  
+  /**
+   * Ajax + read
+   * 
+   * @return
+   */
+  @ResponseBody
+  @RequestMapping(value = "/ncate/read_ajax.do", method = RequestMethod.GET,
+                          produces = "text/plain;charset=UTF-8")
+  public String read_ajax(int ncate_no) {
+    try {
+      Thread.sleep(1500);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    
+    NcateVO ncateVO = this.ncateProc.read(ncate_no);
+
+    JSONObject json = new JSONObject();
+    json.put("ncate_no", ncate_no);
+    json.put("ncate_name", ncateVO.getNcate_name());
+    json.put("nseqno", ncateVO.getNseqno());
+    json.put("nvisible", ncateVO.getNvisible());
+
+    return json.toString();
+  }
+  
+  
+  @ResponseBody
+  @RequestMapping(value = "/ncate/update_ajax.do", method = RequestMethod.POST,
+                  produces = "text/plain;charset=UTF-8")
+  public String update_ajax(NcateVO ncateVO) {
+    try {
+      Thread.sleep(1500);
+    } catch (InterruptedException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+    int ncate_cnt = this.ncateProc.update(ncateVO);
+    
+    JSONObject json = new JSONObject();
+    json.put("ncate_cnt", ncate_cnt);
+
+    return json.toString();
   }
   
   /**
@@ -128,6 +195,29 @@ public class NcateCont {
     mav.setViewName("/ncate/delete_msg"); 
 
     return mav;
+  }
+  
+  /**
+   * 昏力 贸府 + Ajax
+   * @param ncate_no
+   * @return
+   */
+  @ResponseBody
+  @RequestMapping(value = "/ncate/delete_ajax.do", method = RequestMethod.POST,
+                  produces = "text/plain;charset=UTF-8")
+  public String delete_ajax(int ncate_no) {
+    try {
+      Thread.sleep(1500);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    int ncate_cnt = this.ncateProc.delete(ncate_no);
+    
+    JSONObject json = new JSONObject();
+    json.put("ncate_cnt", ncate_cnt);
+
+    return json.toString();
   }
   
   /**

@@ -24,7 +24,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY nseqno ASC
   </select>
 
-  <!-- 조회, id: read, 입력: ncateno, 리턴: CateVO -->
   <select id="read" resultType="NcateVO" parameterType="int">
     SELECT ncate_no, ncate_name, nseqno, nvisible, ncate_rdate, ncate_cnt
     FROM ncate
