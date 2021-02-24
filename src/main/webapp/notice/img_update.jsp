@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>ebook</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -44,7 +44,6 @@
       <FORM name='frm' method='POST' action='./img_delete.do' class="form-horizontal">
         <!-- FK 지정 -->
         <input type='hidden' name='m_no' id='m_no' value='${param.m_no }'>
-        <input type='hidden' name='ncate_no' id='ncate_no' value='${param.ncate_no }'>
         <input type='hidden' name=noticeno id='noticeno' value="${param.noticeno }">
 
         <IMG src="./storage/main_images/${nfile1 }" style="width: 50%; margin-bottom: 10px;">
@@ -69,7 +68,7 @@
                 enctype="multipart/form-data">
                
       <!-- FK memberno 지정 -->
-      <input type='hidden' name='memberno' id='memberno' value='1'>
+      <input type='hidden' name='m_no' id='m_no' value='1'>
       
       <input type='hidden' name='noticeno' id='noticeno' value="${param.noticeno }">
       

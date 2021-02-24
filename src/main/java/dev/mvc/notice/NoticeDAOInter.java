@@ -20,6 +20,12 @@ public interface NoticeDAOInter {
   public List<NoticeVO> list_noticeno_asc();
   
   /**
+   * 특정 카테고리 글목록
+   * @return
+   */
+  public List<NoticeVO> list_by_ncateno(int ncate_no);
+  
+  /**
    * 공지사항 조회
    * @param noticeno
    * @return
@@ -67,4 +73,31 @@ public interface NoticeDAOInter {
    * @return
    */
   public int update_visible(NoticeVO noticeVO);
+  
+  
+  
+  /**
+   * 카테고리별 검색 목록
+   * @param hashMap
+   * @return
+   */
+  public List<NoticeVO> list_by_ncateno_search(HashMap<String, Object> hashMap);
+  
+  /**
+   * 카테고리별 검색 페이징 목록
+   * @param hashMap
+   * @return
+   */
+  public List<NoticeVO> list_by_ncateno_search_paging(HashMap<String, Object> map);
+
+  /**
+   * 카테고리별 검색 레코드 갯수
+   * @param hashMap
+   * @return
+   */
+  public int search_cnt(HashMap<String, Object> hashMap);
+  
+  
+ 
+  
 }

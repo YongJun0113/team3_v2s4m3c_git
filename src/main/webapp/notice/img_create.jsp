@@ -5,7 +5,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>team3</title>
+<title>ebook</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -40,7 +40,6 @@
                
       <!-- FK 지정 -->
       <input type='hidden' name='m_no' id='m_no' value='${param.m_no }'>
-      <input type='hidden' name='ncate_no' id='ncate_no' value='${param.ncate_no }'>
       <input type='hidden' name=noticeno id='noticeno' value="${param.noticeno}">
       
       <div class="form-group">   

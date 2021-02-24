@@ -16,12 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.ncate.NcateProcInter;
+import dev.mvc.ncate.NcateVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
 
 
 @Controller
 public class NoticeCont {
+  
+  @Autowired
+  @Qualifier("dev.mvc.ncate.NcateProc")
+  private NcateProcInter ncateProc;
+  
   @Autowired
   @Qualifier("dev.mvc.notice.NoticeProc")
   private NoticeProcInter noticeProc;
@@ -95,17 +102,37 @@ public class NoticeCont {
    * 목록
    * @return
    */
-  @RequestMapping(value = "/notice/list.do", method = RequestMethod.GET)
-  public ModelAndView list() {
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("/notice/list");
-
-    List<NoticeVO> list = this.noticeProc.list_noticeno_asc();
+//  @RequestMapping(value = "/notice/list.do", method = RequestMethod.GET)
+//  public ModelAndView list() {
+//    ModelAndView mav = new ModelAndView();
+//    mav.setViewName("/notice/list");
+//
+//    List<NoticeVO> list = this.noticeProc.list_noticeno_asc();
+//    mav.addObject("list", list);
+//
+//    return mav; // forward
+//  }
+  
+  /**
+   * 카테고리별 목록
+   * @param ncate_no
+   * @return
+   */
+  @RequestMapping(value = "/notice/list_all.do", method = RequestMethod.GET)
+  public ModelAndView list_by_ncateno(int ncate_no) { 
+    
+    ModelAndView mav = new ModelAndView(); 
+    mav.setViewName("/notice/list_by_ncateno");
+    
+    NcateVO ncateVO = this.ncateProc.read(ncate_no); 
+    mav.addObject("ncateVO", ncateVO);
+ 
+    List<NoticeVO> list = this.noticeProc.list_by_ncateno(ncate_no);
     mav.addObject("list", list);
-
-    return mav; // forward
-  }
-
+    return mav; 
+    
+   }
+  
   /**
    * 전체 목록
    * @return
@@ -426,7 +453,7 @@ public class NoticeCont {
     int cnt = this.noticeProc.update_visible(noticeVO);
     mav.addObject("cnt", cnt); // request에 저장
 
-    mav.setViewName("redirect:/notice/list.do"); // request 객체가 전달이 안됨. 
+    mav.setViewName("redirect:/notice/list_all.do"); // request 객체가 전달이 안됨. 
 
     return mav;
   }
@@ -480,4 +507,101 @@ public class NoticeCont {
 
     return mav;
   }
+  
+  /**
+   * 목록 + 검색 지원
+   * http://localhost:9090/resort/notice/list.do
+   * http://localhost:9090/resort/notice/list.do?ncateno=1&title=스위스
+   * @param ncate_no
+   * @param title
+   * @return
+   */
+//  @RequestMapping(value = "/notice/list.do", 
+//                                       method = RequestMethod.GET)
+//  public ModelAndView list_by_ncateno_search(
+//      @RequestParam(value="ncate_no", defaultValue="1") int ncate_no,
+//      @RequestParam(value="title", defaultValue="") String title
+//      ) { 
+//    
+//    ModelAndView mav = new ModelAndView();
+//    // /contents/list_by_cateno_table_img1_search.jsp
+//    mav.setViewName("/notice/list_by_ncateno_search");   
+//    
+//    // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
+//    HashMap<String, Object> map = new HashMap<String, Object>();
+//    map.put("ncate_no", ncate_no); // #{cateno}
+//    map.put("title", title);     // #{word}
+//    
+//    // 검색 목록
+//    List<NoticeVO> list = noticeProc.list_by_ncateno_search(map);
+//    mav.addObject("list", list);
+//    
+//    // 검색된 레코드 갯수
+//    int search_cnt = noticeProc.search_cnt(map);
+//    mav.addObject("search_cnt", search_cnt);
+//
+//    NcateVO ncateVO = ncateProc.read(ncate_no);
+//    mav.addObject("ncateVO", ncateVO);
+//    
+//    return mav;
+//  }    
+  
+  /**
+   * 목록 + 검색 + 페이징 지원
+   * @param cateno
+   * @param word
+   * @param nowPage
+   * @return
+   */
+  @RequestMapping(value = "/notice/list.do", 
+                                       method = RequestMethod.GET)
+  public ModelAndView list_by_cateno_search_paging(
+      @RequestParam(value="ncate_no", defaultValue="1") int ncate_no,
+      @RequestParam(value="title", defaultValue="") String title,
+      @RequestParam(value="nowPage", defaultValue="1") int nowPage
+      ) { 
+    System.out.println("--> nowPage: " + nowPage);
+    
+    ModelAndView mav = new ModelAndView();
+    
+    // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
+    HashMap<String, Object> map = new HashMap<String, Object>();
+    map.put("ncate_no", ncate_no); // #{cateno}
+    map.put("title", title);     // #{word}
+    map.put("nowPage", nowPage);  // 페이지에 출력할 레코드의 범위를 산출하기위해 사용     
+    
+    // 검색 목록
+    List<NoticeVO> list = noticeProc.list_by_ncateno_search_paging(map);
+    mav.addObject("list", list);
+    
+    // 검색된 레코드 갯수
+    int search_count = noticeProc.search_cnt(map);
+    mav.addObject("search_count", search_count);
+  
+    NcateVO ncateVO = ncateProc.read(ncate_no);
+    mav.addObject("ncateVO", ncateVO);
+    
+
+    /*
+     * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 
+     * 현재 페이지: 11 / 22   [이전] 11 12 13 14 15 16 17 18 19 20 [다음] 
+     * 
+     * @param listFile 목록 파일명 
+     * @param cateno 카테고리번호 
+     * @param search_count 검색(전체) 레코드수 
+     * @param nowPage     현재 페이지
+     * @param word 검색어
+     * @return 페이징 생성 문자열
+     */ 
+    String paging = noticeProc.pagingBox("list.do", ncate_no, search_count, nowPage, title);
+    mav.addObject("paging", paging);
+  
+    mav.addObject("nowPage", nowPage);
+
+    // /contents/list_by_cateno_table_img1_search_paging.jsp
+    mav.setViewName("/notice/list_by_ncateno_search_paging");   
+    
+    return mav;
+  }    
+  
 }
