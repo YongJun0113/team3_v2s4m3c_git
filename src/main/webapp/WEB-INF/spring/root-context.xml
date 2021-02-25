@@ -33,6 +33,7 @@
                             dev.mvc.event,
                             dev.mvc.sale,
                             dev.mvc.qnagrp
+                            dev.mvc.publisher
                             dev.mvc.admin,
                             dev.mvc.categrp, 
                             dev.mvc.cate, 

@@ -39,6 +39,7 @@
   <context:component-scan base-package="dev.mvc.event" />
   <context:component-scan base-package="dev.mvc.sale" />
   <context:component-scan base-package="dev.mvc.qnagrp" />
+  <context:component-scan base-package="dev.mvc.publisher" />
   <!-- 웹 퍼블리셔 -->
     <!-- FORM의 FILE 태그를 읽어 MultipartFile 객체로 변환 -->
   <beans:bean id="multipartResolver"
