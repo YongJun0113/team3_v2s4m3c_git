@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.categrp.CategrpDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.publisher.PublisherDAOInter">
+   
+    <!-- 등록 -->
+ <insert id="create" parameterType="PublisherVO">
+      INSERT INTO publisher(pub_no, name, http, etc, file1, thumb1, size1, rdate)
+      VALUES(publisher_seq.nextval, #{name}, #{http} , #{etc},#{file1}, #{thumb1}, #{size1}, sysdate )
+ </insert>
+  
+  <!-- 목록 -->
+ <select id="list_pub_no_asc"  resultType="PublisherVO">
+     SELECT pub_no, name, http, etc, file1, thumb1, size1, rdate
+     FROM publisher
+     ORDER BY pub_no ASC
+</select>
+  
+   <!--조회-->
+   <select id="read" parameterType="int" resultType="PublisherVO">
+      SELECT pub_no, name, http, etc, file1, thumb1, size1, rdate
+      FROM publisher
+      WHERE pub_no=#{pub_no }
+   </select>
+   
+     <!-- 수정 -->
+  <update id="update" parameterType="PublisherVO">
+     UPDATE publisher 
+     SET name=#{name}, http=#{http}, etc=#{etc}, file1=#{file1}, thumb1=#{thumb1}, size1=#{size1}
+     WHERE pub_no = #{pub_no}
+  </update>
+        
+   <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+     DELETE publisher
+     WHERE pub_no = #{pub_no}
+  </delete>
+   
+   
+  
+  </mapper>
+  

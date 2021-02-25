@@ -6,21 +6,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="dev.mvc.notice.NoticeDAOInter">
   <insert id="create" parameterType="NoticeVO">
-    INSERT INTO notice(noticeno, memberno, title, content, ip, notice_pw, nfile1, nthumb1, nsize1, writer, rdate, visible)
-    VALUES(notice_seq.nextval, #{memberno}, #{title}, #{content}, #{ip}, #{notice_pw},
+    INSERT INTO notice(noticeno, m_no, ncate_no, title, content, ip, notice_pw, nfile1, nthumb1, nsize1, writer, rdate, visible)
+    VALUES(notice_seq.nextval, #{m_no}, #{ncate_no}, #{title}, #{content}, #{ip}, #{notice_pw},
      #{nfile1}, #{nthumb1}, #{nsize1}, #{writer}, sysdate, #{visible})
-    </insert>
+   </insert>
   
   <select id="list_noticeno_asc" resultType="NoticeVO">
-    SELECT noticeno, memberno, title, content, ip, notice_pw, nfile1, nthumb1, nsize1,
-     writer, rdate, visible
+    SELECT noticeno, m_no, ncate_no, title, content, ip, notice_pw, nfile1, nthumb1, nsize1, writer, rdate, visible
     FROM notice
     ORDER BY noticeno ASC
   </select>
   
+  <select id="list_by_ncateno" resultType="NoticeVO" parameterType="int">
+    SELECT noticeno, m_no, ncate_no, title, content, ip, notice_pw, nfile1, nthumb1, nsize1, writer, rdate, visible
+    FROM notice
+    WHERE ncate_no = #{ncate_no}
+    ORDER BY noticeno DESC
+  </select> 
+  
   <select id="read" resultType="NoticeVO" parameterType="int">
-    SELECT noticeno, memberno, title, content, ip, notice_pw, nfile1, nthumb1, nsize1,
-     writer, rdate, visible
+    SELECT noticeno, m_no, ncate_no, title, content, ip, notice_pw, nfile1, nthumb1, nsize1, writer, rdate, visible
     FROM notice
     WHERE noticeno=#{noticeno}
   </select>
@@ -55,6 +60,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     DELETE FROM notice
     WHERE noticeno = #{noticeno}
   </delete>
+  
+   <!-- 카테고리별 검색 목록 -->
+   <!-- <select id="list_by_ncateno_search" resultType="NoticeVO" parameterType="HashMap">
+     SELECT noticeno, m_no, ncate_no, title, content, ip, notice_pw, nfile1, nthumb1, nsize1, writer, rdate, visible
+     FROM notice
+     <choose>
+       <when test="title == null or title == ''"> 검색하지 않는 경우
+         WHERE ncate_no=#{ncate_no}
+       </when>
+       <otherwise> 검색하는 경우
+         WHERE ncate_no=#{ncate_no} AND (title LIKE '%' OR content LIKE '%')
+       </otherwise>
+     </choose>
+     ORDER BY noticeno DESC   
+   </select> -->
+   
+   <!-- 검색 페이징 서브쿼리 -->  
+   <select id="list_by_ncateno_search_paging" resultType="NoticeVO" parameterType="HashMap">
+   
+      SELECT noticeno, m_no, ncate_no, title, content, ip, notice_pw, nfile1, nthumb1, nsize1, writer, rdate, visible, r
+      FROM (
+                 SELECT noticeno, m_no, ncate_no, title, content, ip, notice_pw, nfile1, nthumb1, nsize1, writer, rdate, visible, rownum as r
+                 FROM (
+                           SELECT noticeno, m_no, ncate_no, title, content, ip, notice_pw, nfile1, nthumb1, nsize1, writer, rdate, visible
+                           FROM notice
+                          <choose>
+                            <when test="title == null or title == ''"> <!-- 검색하지 않는 경우 -->
+                            </when>
+                            <otherwise>
+                              WHERE ncate_no=#{ncate_no} AND title LIKE '%'
+                            </otherwise>
+                          </choose>
+                          ORDER BY noticeno DESC
+                 )          
+      )
+     WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
+    
+   </select> 
+   
+  
+   <!-- 카테고리별 검색 레코드 갯수 -->
+   <select id="search_cnt" resultType="int" parameterType="HashMap">
+     SELECT COUNT(*) as cnt
+     FROM notice
+     <choose>
+       <when test="title == null or title == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
+         WHERE ncate_no=#{ncate_no}
+       </when>
+       <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
+         WHERE ncate_no=#{ncate_no} AND (title LIKE '%' OR content LIKE '%')
+       </otherwise>
+     </choose>
+   </select>
 </mapper>
 
 
